@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/str_menu_home" />
+    <item android:id="@+id/menu_videos"
+        android:icon="@drawable/ic_baseline_video_library_24"
+        android:title="@string/str_menu_videos" />
+    <item android:id="@+id/menu_podcast"
+        android:icon="@drawable/ic_baseline_headset_mic_24"
+        android:title="@string/str_menu_podcast" />
+    <item android:id="@+id/menu_calendar"
+        android:icon="@drawable/ic_baseline_date_range_24"
+        android:title="@string/str_menu_calendar" />
+    <item android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_baseline_menu_24"
+        android:title="@string/str_menu_setting" />
+
+</menu>

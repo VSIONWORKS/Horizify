@@ -2,15 +2,15 @@ package com.horizon.horizify.ui.home.item
 
 import android.view.View
 import com.horizon.horizify.R
-import com.horizon.horizify.databinding.FragmentHomeBinding
+import com.horizon.horizify.databinding.HomeBodyItemBinding
 import com.horizon.horizify.utils.ItemAction
 import com.xwray.groupie.viewbinding.BindableItem
 
-class HomeBodyItem : BindableItem<FragmentHomeBinding>() {
+class HomeBodyItem : BindableItem<HomeBodyItemBinding>() {
 
     var clickListener: ItemAction? = null
 
-    override fun bind(viewBinding: FragmentHomeBinding, position: Int) {
+    override fun bind(viewBinding: HomeBodyItemBinding, position: Int) {
         with(viewBinding) {
             homeTest.text = "Keneki Pogi"
             btnTest.setOnClickListener {
@@ -19,7 +19,7 @@ class HomeBodyItem : BindableItem<FragmentHomeBinding>() {
         }
     }
 
-    override fun getLayout(): Int = R.layout.fragment_home
+    override fun getLayout(): Int = R.layout.home_body_item
 
-    override fun initializeViewBinding(view: View): FragmentHomeBinding = FragmentHomeBinding.bind(view)
+    override fun initializeViewBinding(view: View): HomeBodyItemBinding = HomeBodyItemBinding.bind(view)
 }

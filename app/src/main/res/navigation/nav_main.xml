@@ -13,6 +13,11 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment"
+        app:launchSingleTop="true" />
+
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.horizon.horizify.ui.calendar.CalendarFragment">
@@ -21,5 +26,10 @@
             app:popUpTo="@id/calendarFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <action
+        android:id="@+id/action_global_calendarFragment"
+        app:destination="@id/calendarFragment"
+        app:launchSingleTop="true" />
 
 </navigation>

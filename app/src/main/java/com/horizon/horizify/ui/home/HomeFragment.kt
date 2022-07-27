@@ -7,6 +7,8 @@ import com.horizon.horizify.Extensions.setBody
 import com.horizon.horizify.base.GroupieFragment
 import com.horizon.horizify.modules.HelloSayer
 import com.horizon.horizify.ui.home.item.HomeBodyItem
+import com.horizon.horizify.ui.home.item.HomeHeaderItem
+import com.horizon.horizify.ui.home.item.HomeUpcomingItem
 import com.horizon.horizify.utils.ItemAction
 import com.horizon.horizify.utils.PageId
 import org.koin.core.component.inject
@@ -17,8 +19,13 @@ class HomeFragment : GroupieFragment() {
 
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
         with(root) {
+            val headerItem = HomeHeaderItem()
             var bodyItem = HomeBodyItem()
+            var upcomingItem = HomeUpcomingItem()
+
+            setHeader(headerItem)
             setBody(bodyItem)
+            setFooter(upcomingItem)
 
             bodyItem.clickListener = ItemAction { navigateToPage(PageId.CALENDAR) }
             Log.e("test", test.sayHello() )

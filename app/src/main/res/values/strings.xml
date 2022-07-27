@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Horizify</string>
+
+    <!--    Menu-->
+    <string name="str_menu_home">Home</string>
+    <string name="str_menu_videos">Videos</string>
+    <string name="str_menu_podcast">Podcast</string>
+    <string name="str_menu_calendar">Calendar</string>
+    <string name="str_menu_setting">Settings</string>
+
 </resources>
