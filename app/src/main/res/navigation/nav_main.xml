@@ -19,6 +19,20 @@
         app:launchSingleTop="true" />
 
     <fragment
+        android:id="@+id/podcastFragment"
+        android:name="com.horizon.horizify.ui.podcast.PodcastTrackListFragment">
+        <action
+            android:id="@+id/action_podcastFragment_pop"
+            app:popUpTo="@id/podcastFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_podcastFragment"
+        app:destination="@id/podcastFragment"
+        app:launchSingleTop="true" />
+
+    <fragment
         android:id="@+id/calendarFragment"
         android:name="com.horizon.horizify.ui.calendar.CalendarFragment">
         <action
