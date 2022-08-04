@@ -1,4 +1,4 @@
-package com.horizon.horizify.Extensions
+package com.horizon.horizify.extensions
 
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment

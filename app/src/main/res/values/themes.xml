@@ -3,7 +3,7 @@
     <style name="Theme.Horizify" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/selected_item_color</item>
-        <item name="colorPrimaryVariant">@color/status_Bar</item>
+        <item name="colorPrimaryVariant">@color/blue_toolbar</item>
         <item name="colorOnPrimary">@color/dark_grey</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

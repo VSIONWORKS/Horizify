@@ -1,4 +1,4 @@
-package com.horizon.horizify.Extensions
+package com.horizon.horizify.extensions
 
 import com.xwray.groupie.Group
 import com.xwray.groupie.Section

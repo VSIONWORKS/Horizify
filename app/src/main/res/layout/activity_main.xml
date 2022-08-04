@@ -11,7 +11,7 @@
         android:id="@+id/layout_toolbar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/status_Bar"
+        android:background="@color/blue_toolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -62,19 +62,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu"
         android:elevation="10dp"
-        app:elevation="10dp"
-        app:backgroundTint="@color/white_bottom_navigation"
+        app:elevation="0dp"
         app:itemIconTint="@color/bottom_navigation_state_color"
         app:labelVisibilityMode="labeled"/>
 
-<!--    <androidx.fragment.app.FragmentContainerView-->
-<!--        android:id="@+id/container"-->
-<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+<!--    android:alpha="0.8"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

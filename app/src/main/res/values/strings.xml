@@ -6,6 +6,6 @@
     <string name="str_menu_videos">Videos</string>
     <string name="str_menu_podcast">Podcast</string>
     <string name="str_menu_calendar">Calendar</string>
-    <string name="str_menu_setting">Settings</string>
+    <string name="str_menu_setting">Menu</string>
 
 </resources>

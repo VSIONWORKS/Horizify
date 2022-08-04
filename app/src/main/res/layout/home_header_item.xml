@@ -8,14 +8,13 @@
     android:layout_marginBottom="12dp"
     android:orientation="vertical"
     android:background="@color/transparent"
-    tools:background="@color/gradient_mid">
+    tools:background="@color/semi_white">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_header"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="0dp"
-        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,45 +26,46 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/sample2"
-                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
+                android:src="@drawable/header"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/gradient_label_linear"
-                android:paddingVertical="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:background="@drawable/gradient_label_linear"-->
+<!--                android:paddingVertical="5dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent">-->
 
-                <TextView
-                    android:id="@+id/date_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:text="July 31, 2022"
-                    android:textColor="@color/semi_white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/date_text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="12dp"-->
+<!--                    android:text="John 3:16"-->
+<!--                    android:textColor="@color/semi_white"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/title_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:text="The Radical Life"
-                    android:textColor="@color/semi_white"
-                    android:textStyle="bold"
-                    android:textSize="28sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/title_text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="12dp"-->
+<!--                    android:text="For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."-->
+<!--                    android:textColor="@color/semi_white"-->
+<!--                    android:textStyle="italic"-->
+<!--                    android:textSize="14sp" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

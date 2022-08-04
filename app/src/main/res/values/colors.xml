@@ -13,14 +13,20 @@
     <color name="dark_background">#212121</color>
     <color name="dark_toolbar">#010101</color>
     <color name="blue_toolbar">#0773AF</color>
+    <color name="select_day">#4DFFFFFF</color>
+    <color name="outbound_day">#A1A1A1</color>
+    <color name="outbound_legend">#B1B0B0</color>
+    <color name="sunday">#F17B7B</color>
 
     <color name="semi_white">#F1EEEE</color>
+    <color name="light_grey_background">#ebecf0</color>
     <color name="dark_grey">#393838</color>
-    <color name="light_grey">#7A7979</color>
+    <color name="light_grey">#8A8989</color>
     <color name="background_dark_grey">#2E2E2E</color>
     <color name="bottom_dark_grey">#B41B1B1B</color>
 
-    <color name="status_Bar">#1480be</color>
+<!--    <color name="status_Bar">#2196f3</color>-->
+    <color name="status_Bar">#2196f3</color>
     <color name="light_blue">#638bbc</color>
     <color name="selected_item_color">#0f81c0</color>
     <color name="unselected_item_color">#515151</color>
@@ -28,6 +34,6 @@
     <color name="blue_bottom_navigation">#5796BA</color>
 
     <color name="gradient_top">@color/status_Bar</color>
-    <color name="gradient_mid">#4ebec2</color>
+    <color name="gradient_mid">#F1A58F</color>
     <color name="gradient_bottom">@color/semi_white</color>
 </resources>

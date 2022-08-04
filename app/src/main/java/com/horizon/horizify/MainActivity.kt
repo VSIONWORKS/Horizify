@@ -5,10 +5,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationBarView
 import com.horizon.horizify.databinding.ActivityMainBinding
@@ -16,6 +14,7 @@ import com.horizon.horizify.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
+    private var isInit = false
 
     private val navController: NavController by lazy {
         findNavController(R.id.fragment_container_view)
@@ -26,13 +25,18 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         // Hide the status bar.
 //        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
     }
 
     override fun onStart() {
         super.onStart()
-        initializeNavigation()
+        if (!isInit) {
+            isInit = true
+            initializeNavigation()
+        }
     }
 
     private fun initializeNavigation() {
