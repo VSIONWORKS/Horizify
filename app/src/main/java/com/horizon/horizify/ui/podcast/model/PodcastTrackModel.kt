@@ -4,5 +4,6 @@ data class PodcastTrackModel(
     val cover: String,
     val title: String,
     val pastor : String,
-    val mp3URL : String
+    val mp3URL : String,
+    val link : String
 )

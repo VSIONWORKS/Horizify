@@ -10,9 +10,11 @@
 
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#8DFFFFFF</color>
+    <color name="dark_transparent">#CB3A3A3A</color>
     <color name="dark_background">#212121</color>
     <color name="dark_toolbar">#010101</color>
     <color name="blue_toolbar">#0773AF</color>
+    <color name="dark_blue">#045988</color>
     <color name="select_day">#4DFFFFFF</color>
     <color name="outbound_day">#A1A1A1</color>
     <color name="outbound_legend">#B1B0B0</color>
@@ -27,6 +29,9 @@
     <color name="shimmer_color">#DACFCECE</color>
 
     <color name="black_String">#2C2C2C</color>
+    <color name="player_button">#3aa4df</color>
+
+
 
 <!--    <color name="status_Bar">#2196f3</color>-->
     <color name="status_Bar">#2196f3</color>
@@ -37,6 +42,6 @@
     <color name="blue_bottom_navigation">#5796BA</color>
 
     <color name="gradient_top">@color/status_Bar</color>
-    <color name="gradient_mid">#F1A58F</color>
+    <color name="gradient_mid">#8FE6F1</color>
     <color name="gradient_bottom">@color/semi_white</color>
 </resources>

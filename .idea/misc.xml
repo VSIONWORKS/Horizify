@@ -10,6 +10,13 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_light_linear.xml" value="0.2405" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_linear.xml" value="0.226" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.24" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_play_circle_filled_24_white.xml" value="0.2375" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_record_voice_over_24.xml" value="0.2375" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_skip_next_24.xml" value="0.2375" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_skip_previous_24_white.xml" value="0.2375" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.2375" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2375" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ripple_black.xml" value="0.241" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/allerta.xml" value="0.25052083333333336" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/roboto_bold.xml" value="0.24947916666666667" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_main.xml" value="0.26875" />
@@ -28,8 +35,9 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_verse_item.xml" value="0.25" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/menu_item.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_item.xml" value="0.2925" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_player_content_item.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_player_item.xml" value="0.2925" />
-        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_track_list_item.xml" value="0.25" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_track_list_item.xml" value="0.5" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_tracklist_content_scrolling.xml" value="0.23697916666666666" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/shimmer_podcast_item.xml" value="0.33" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/video_player_item.xml" value="0.2925" />

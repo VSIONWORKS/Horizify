@@ -11,3 +11,7 @@ class ItemActionWithPosition(
 class ItemActionWithValue<T>(
     val actionCallback: ((value: T) -> Unit)
 )
+
+open class ItemActionWithPositionAndValue<T>(
+    open val actionCallback: ((position: Int, value: T) -> Unit)
+)

@@ -1,9 +1,11 @@
 package com.horizon.horizify.ui.podcast.repository
 
+import android.util.Log
 import com.horizon.horizify.ui.podcast.model.PodcastModel
 import com.horizon.horizify.ui.podcast.model.PodcastTrackModel
 import com.horizon.horizify.ui.podcast.repository.PodcastRepositoryImpl.TAGS.IMAGE_TAG
 import com.horizon.horizify.ui.podcast.repository.PodcastRepositoryImpl.TAGS.ITEM_TAG
+import com.horizon.horizify.ui.podcast.repository.PodcastRepositoryImpl.TAGS.LINK_TAG
 import com.horizon.horizify.utils.Constants
 import org.w3c.dom.Element
 import org.xml.sax.InputSource
@@ -38,18 +40,21 @@ class PodcastRepositoryImpl : PodcastRepository {
                 val creatorElement = nodeElement.getElementsByTagName(TAGS.CREATOR_TAG).item(0)
                 val enclosureElement = nodeElement.getElementsByTagName(TAGS.ENCLOSURE_TAG).item(0)
                 val imageElement = nodeElement.getElementsByTagName(TAGS.ITUNES_IMAGE_TAG).item(0)
+                val linkElement = nodeElement.getElementsByTagName(LINK_TAG).item(0)
 
                 val title = if (titleElement != null && titleElement.hasChildNodes()) titleElement.firstChild.nodeValue else ""
                 val pastor = if (creatorElement != null && creatorElement.hasChildNodes()) creatorElement.firstChild.nodeValue else ""
                 val mp3 = enclosureElement.attributes.getNamedItem(TAGS.URL_TAG).nodeValue
                 val cover = imageElement.attributes.getNamedItem(TAGS.HREF_TAG).nodeValue
+                val link = linkElement.firstChild.nodeValue
 
                 trackList.add(
                     PodcastTrackModel(
                         cover = cover,
                         title = title.replace(" - $pastor", ""),
                         pastor = pastor,
-                        mp3URL = mp3
+                        mp3URL = mp3,
+                        link = link
                     )
                 )
             }
@@ -59,15 +64,23 @@ class PodcastRepositoryImpl : PodcastRepository {
                 trackList = trackList
             )
 
-        }catch (e: IOException) {
+        } catch (e: IOException) {
             e.printStackTrace()
+            Log.e("exception : ", "retry")
         } catch (e: ParserConfigurationException) {
             e.printStackTrace()
+            Log.e("exception : ", "ParserConfigurationException")
         } catch (e: SAXException) {
             e.printStackTrace()
+            Log.e("exception : ", "SAXException")
         }
 
-        return PodcastModel()
+        /**
+         * Return getTrackList() to retry fetching from url
+         * Used as retry when connection is back
+         * TODO : create network error handling
+         * */
+        return getTrackList()
     }
 
     object TAGS {
@@ -78,6 +91,7 @@ class PodcastRepositoryImpl : PodcastRepository {
         const val CREATOR_TAG = "dc:creator"
         const val ENCLOSURE_TAG = "enclosure"
         const val URL_TAG = "url"
+        const val LINK_TAG = "link"
         const val ITUNES_IMAGE_TAG = "itunes:image"
         const val HREF_TAG = "href"
     }

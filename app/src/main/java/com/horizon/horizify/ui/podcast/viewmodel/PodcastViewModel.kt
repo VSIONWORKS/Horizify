@@ -20,7 +20,6 @@ class PodcastViewModel(private val repository: PodcastRepository) : BaseViewMode
     }
 
     override suspend fun getTrackList() {
-        pageState.value = PageState.Loading
         trackListItemData = repository.getTrackList()
         pageState.value = PageState.Completed
     }

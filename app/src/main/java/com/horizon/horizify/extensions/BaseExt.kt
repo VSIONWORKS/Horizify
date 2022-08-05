@@ -1,8 +1,10 @@
 package com.horizon.horizify.extensions
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
@@ -31,6 +33,10 @@ fun View.makeVisible() {
 
 fun View.makeInVisible() {
     visibility = View.INVISIBLE
+}
+
+fun Context.toast(message:String){
+    Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
 }
 
 /**
