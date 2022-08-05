@@ -24,6 +24,9 @@
     <color name="light_grey">#8A8989</color>
     <color name="background_dark_grey">#2E2E2E</color>
     <color name="bottom_dark_grey">#B41B1B1B</color>
+    <color name="shimmer_color">#DACFCECE</color>
+
+    <color name="black_String">#2C2C2C</color>
 
 <!--    <color name="status_Bar">#2196f3</color>-->
     <color name="status_Bar">#2196f3</color>

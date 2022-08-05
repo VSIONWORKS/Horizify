@@ -7,7 +7,9 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/calendar_current_day.xml" value="0.226" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/calendar_selected_day.xml" value="0.226" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_background_linear.xml" value="0.21" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_light_linear.xml" value="0.2405" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_linear.xml" value="0.226" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.24" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/allerta.xml" value="0.25052083333333336" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/roboto_bold.xml" value="0.24947916666666667" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_main.xml" value="0.26875" />
@@ -27,8 +29,9 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/menu_item.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_item.xml" value="0.2925" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_player_item.xml" value="0.2925" />
-        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_track_list_item.xml" value="0.23697916666666666" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_track_list_item.xml" value="0.25" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/podcast_tracklist_content_scrolling.xml" value="0.23697916666666666" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/shimmer_podcast_item.xml" value="0.33" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/video_player_item.xml" value="0.2925" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/menu/bottom_menu.xml" value="0.2677083333333333" />
       </map>
