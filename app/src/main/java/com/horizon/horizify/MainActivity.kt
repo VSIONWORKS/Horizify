@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         Log.e("menu : ", item.itemId.toString())
         when (item.itemId) {
             R.id.menu_home -> navController.navigate(R.id.action_global_homeFragment)
-            R.id.menu_videos -> navController.navigate(R.id.action_global_calendarFragment)
+            R.id.menu_videos -> navController.navigate(R.id.action_global_videoFragment)
             R.id.menu_podcast -> navController.navigate(R.id.action_global_podcastFragment)
             R.id.menu_calendar -> navController.navigate(R.id.action_global_calendarFragment)
             R.id.menu_settings -> navController.navigate(R.id.action_global_homeFragment)

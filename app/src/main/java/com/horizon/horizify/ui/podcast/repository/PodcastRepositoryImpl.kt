@@ -1,6 +1,5 @@
 package com.horizon.horizify.ui.podcast.repository
 
-import android.util.Log
 import com.horizon.horizify.ui.podcast.model.PodcastModel
 import com.horizon.horizify.ui.podcast.model.PodcastTrackModel
 import com.horizon.horizify.ui.podcast.repository.PodcastRepositoryImpl.TAGS.IMAGE_TAG
@@ -9,11 +8,9 @@ import com.horizon.horizify.ui.podcast.repository.PodcastRepositoryImpl.TAGS.LIN
 import com.horizon.horizify.utils.Constants
 import org.w3c.dom.Element
 import org.xml.sax.InputSource
-import org.xml.sax.SAXException
 import java.io.IOException
 import java.net.URL
 import javax.xml.parsers.DocumentBuilderFactory
-import javax.xml.parsers.ParserConfigurationException
 
 class PodcastRepositoryImpl : PodcastRepository {
 
@@ -66,13 +63,6 @@ class PodcastRepositoryImpl : PodcastRepository {
 
         } catch (e: IOException) {
             e.printStackTrace()
-            Log.e("exception : ", "retry")
-        } catch (e: ParserConfigurationException) {
-            e.printStackTrace()
-            Log.e("exception : ", "ParserConfigurationException")
-        } catch (e: SAXException) {
-            e.printStackTrace()
-            Log.e("exception : ", "SAXException")
         }
 
         /**
