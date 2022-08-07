@@ -6,10 +6,10 @@
         android:title="@string/str_menu_home" />
     <item android:id="@+id/menu_videos"
         android:icon="@drawable/ic_baseline_video_library_24"
-        android:title="@string/str_menu_videos" />
+        android:title="@string/str_menu_sermons" />
     <item android:id="@+id/menu_podcast"
         android:icon="@drawable/ic_baseline_headset_mic_24"
-        android:title="@string/str_menu_podcast" />
+        android:title="@string/str_menu_listen" />
     <item android:id="@+id/menu_calendar"
         android:icon="@drawable/ic_baseline_date_range_24"
         android:title="@string/str_menu_calendar" />

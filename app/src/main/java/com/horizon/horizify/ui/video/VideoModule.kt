@@ -1,6 +1,7 @@
 package com.horizon.horizify.ui.video
 
 import com.horizon.horizify.ui.video.item.VideoPlayerItem
+import com.horizon.horizify.ui.video.item.VideoPlaylistItem
 import com.horizon.horizify.ui.video.repository.VideoRepository
 import com.horizon.horizify.ui.video.repository.VideoRepositoryImpl
 import com.horizon.horizify.ui.video.viewmodel.VideoViewModel
@@ -11,6 +12,7 @@ object VideoModule {
     val dependency = module {
         factory<VideoRepository> { VideoRepositoryImpl(get()) }
         factory { VideoPlayerItem(it[0]) }
+        factory { VideoPlaylistItem(it[0]) }
         viewModel { VideoViewModel(get()) }
     }
 }

@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class VideoPlaylistModel(
     val nextPageToken: String? = null,
     val prevPageToken: String? = null,
-    val items: List<ItemInfo>
+    val items: List<ItemInfo>? = null
 ) {
     data class ItemInfo(val id: String, val snippet: SnippetInfo)
     data class SnippetInfo(val title: String, val description: String, val thumbnails: Thumbnail)

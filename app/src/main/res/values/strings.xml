@@ -3,8 +3,8 @@
 
     <!--    Menu-->
     <string name="str_menu_home">Home</string>
-    <string name="str_menu_videos">Videos</string>
-    <string name="str_menu_podcast">Podcast</string>
+    <string name="str_menu_sermons">Sermon</string>
+    <string name="str_menu_listen">Listen</string>
     <string name="str_menu_calendar">Calendar</string>
     <string name="str_menu_setting">Menu</string>
 
