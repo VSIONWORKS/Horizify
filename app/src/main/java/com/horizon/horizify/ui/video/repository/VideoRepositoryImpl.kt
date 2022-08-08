@@ -3,11 +3,11 @@ package com.horizon.horizify.ui.video.repository
 import com.horizon.horizify.base.SharedPreference
 import com.horizon.horizify.extensions.saveObject
 import com.horizon.horizify.service.NetworkService
-import com.horizon.horizify.ui.video.VideoPlayerActivity.Companion.PLAYLIST_ITEMS
 import com.horizon.horizify.ui.video.model.PlaylistVideosModel
 import com.horizon.horizify.ui.video.model.VideoPlaylistItemModel
 import com.horizon.horizify.ui.video.model.VideoPlaylistModel
 import com.horizon.horizify.utils.Constants
+import com.horizon.horizify.utils.Constants.PLAYLIST_ITEMS
 
 class VideoRepositoryImpl(private val service: NetworkService, private val prefs: SharedPreference) : VideoRepository {
     override suspend fun getPlayList(): VideoPlaylistModel {

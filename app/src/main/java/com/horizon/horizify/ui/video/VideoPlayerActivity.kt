@@ -1,6 +1,10 @@
 package com.horizon.horizify.ui.video
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.widget.SeekBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -12,6 +16,8 @@ import com.horizon.horizify.extensions.get
 import com.horizon.horizify.ui.video.item.VideoTrackItem
 import com.horizon.horizify.ui.video.model.PlaylistVideosModel
 import com.horizon.horizify.utils.Constants
+import com.horizon.horizify.utils.Constants.PLAYLIST_ITEMS
+import com.horizon.horizify.utils.ItemActionWithValue
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
@@ -24,18 +30,20 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
     private var playlistVideos: PlaylistVideosModel = PlaylistVideosModel()
 
-    companion object {
-        const val PLAYLIST_ITEMS = "playlistItems"
-    }
+    var videoId: String = ""
+    var mHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.youtubePlayerView.initialize(Constants.YOUTUBE_API_KEY, this)
+
         getPlaylistVideosObject()
         setUpRecyclerView()
-        binding.youtubePlayerView.initialize(Constants.YOUTUBE_API_KEY, this)
+        setUpSeekbarAndListeners()
+
     }
 
     override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
@@ -45,18 +53,16 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         displayCurrentTime()
 
         // Start buffering
-        // insert video id
-//        if (!p2) {
-//            val playlistId = intent.extras?.getString(PLAYLIST_ID) ?: ""
-//            p1.cueVideo("foT0Qrif-P0")
-//        }
+        // insert first video id
+        if (!p2) p1.cueVideo(videoId)
 
         p1.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
-
+        p1.setPlayerStateChangeListener(mPlayerStateChangeListener)
+        p1.setPlaybackEventListener(mPlaybackEventListener)
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-
+        Log.e("Initialize Failed", p1.toString())
     }
 
     private fun getPlaylistVideosObject() {
@@ -67,14 +73,92 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
     }
 
     private fun setUpRecyclerView() {
-        with(binding){
+        with(binding) {
             val videos = playlistVideos.videos.map {
-                VideoTrackItem(it)
+                VideoTrackItem(
+                    video = it,
+                    onClick = ItemActionWithValue { video ->
+                        loadSelected(video.position, video.videoId, video.title)
+                    }
+                )
             }
+
+            videoId = if (videos.isNullOrEmpty()) "" else videos.first().video.snippet.resourceId.videoId
             rvPlaylistItems.apply {
                 adapter = groupAdapter.apply { addAll(videos) }
                 layoutManager = LinearLayoutManager(context)
             }
+        }
+    }
+
+    private fun loadSelected(position: Int, id: String, title: String) {
+        videoId = id
+        player?.cueVideo(id)
+        binding.txtVideoTitle.text = title
+    }
+
+    private fun setUpSeekbarAndListeners() {
+        with(binding) {
+            videoSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                    val lengthPlayed = player!!.durationMillis * p1 / 100.toLong()
+                    player!!.seekToMillis(lengthPlayed.toInt())
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {}
+                override fun onStopTrackingTouch(p0: SeekBar?) {}
+            })
+
+            playVideo.setOnClickListener {
+                if (null != player && !player!!.isPlaying()) {
+                    player!!.play()
+                }
+            }
+            pauseVideo.setOnClickListener {
+                if (null != player && player!!.isPlaying()) {
+                    player!!.pause()
+                }
+            }
+        }
+    }
+
+    private var mPlaybackEventListener: YouTubePlayer.PlaybackEventListener = object :
+        YouTubePlayer.PlaybackEventListener {
+        override fun onBuffering(arg0: Boolean) {}
+        override fun onPaused() {
+            mHandler!!.removeCallbacks(runnable)
+        }
+
+        override fun onPlaying() {
+            mHandler!!.postDelayed(runnable, 100)
+            displayCurrentTime()
+        }
+
+        override fun onSeekTo(arg0: Int) {
+            mHandler!!.postDelayed(runnable, 100)
+        }
+
+        override fun onStopped() {
+            mHandler!!.removeCallbacks(runnable)
+        }
+    }
+
+    private var mPlayerStateChangeListener: YouTubePlayer.PlayerStateChangeListener = object :
+        YouTubePlayer.PlayerStateChangeListener {
+        override fun onAdStarted() {}
+        override fun onError(arg0: YouTubePlayer.ErrorReason?) {}
+        override fun onLoaded(arg0: String) {}
+        override fun onLoading() {}
+        override fun onVideoEnded() {}
+        override fun onVideoStarted() {
+            displayCurrentTime()
+        }
+    }
+
+    var runnable: Runnable = object : Runnable {
+        override fun run() {
+            displayCurrentTime()
+            mHandler?.postDelayed(this, 100)
         }
     }
 
