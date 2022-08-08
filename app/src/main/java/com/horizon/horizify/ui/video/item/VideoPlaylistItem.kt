@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.horizon.horizify.R
 import com.horizon.horizify.databinding.VideoPlaylistItemBinding
 import com.horizon.horizify.ui.video.State
-import com.horizon.horizify.ui.video.model.VideoPlaylistModel
-import com.horizon.horizify.ui.video.viewmodel.VideoViewModel
+import com.horizon.horizify.ui.video.viewmodel.IVideoViewModel
 import com.horizon.horizify.utils.BindableItemObserver
+import com.horizon.horizify.utils.ItemAction
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
 
-class VideoPlaylistItem(val viewModel: VideoViewModel) : BindableItem<VideoPlaylistItemBinding>() {
+class VideoPlaylistItem(val viewModel: IVideoViewModel) : BindableItem<VideoPlaylistItemBinding>() {
 
     var pageState by BindableItemObserver(State.LOADING)
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
@@ -50,16 +50,15 @@ class VideoPlaylistItem(val viewModel: VideoViewModel) : BindableItem<VideoPlayl
     }
 
     private fun VideoPlaylistItemBinding.loadPlaylist() {
-        val allPlaylist = viewModel.allPlaylist
-        var playListItems = arrayListOf<VideoPlaylistModel.ItemInfo>()
-
-        allPlaylist.forEach { playlist ->
-            playlist.items?.forEach { item ->
-                playListItems.add(item)
-            }
+        val allPlaylist = viewModel.getPlaylists()
+        val playlist = allPlaylist.map {
+            VideoItem(
+                video = it,
+                onClick = ItemAction {
+                    viewModel.fetchPlaylistItems(it.id)
+                }
+            )
         }
-
-        val playlist = playListItems.map { VideoItem(it) }
         rvPlaylist.apply {
             adapter = groupAdapter.apply { addAll(playlist) }
             layoutManager = LinearLayoutManager(context)

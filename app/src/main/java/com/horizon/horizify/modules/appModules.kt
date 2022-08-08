@@ -7,6 +7,7 @@ import com.horizon.horizify.ui.video.VideoModule
 
 val appModules = listOf(
     serviceModules,
+    sharedPreferenceModules,
     HomeModule.dependency,
     CalendarModule.dependency,
     PodcastModule.dependency,

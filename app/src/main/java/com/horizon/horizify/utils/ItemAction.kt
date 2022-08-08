@@ -1,8 +1,9 @@
 package com.horizon.horizify.utils
 
 class ItemAction(
-    val actionCallback: (() -> Unit)
+    open val actionCallback: (() -> Unit)
 )
+
 
 class ItemActionWithPosition(
     val actionCallback: ((position: Int) -> Unit)

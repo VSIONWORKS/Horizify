@@ -7,6 +7,9 @@ object Constants {
 
     const val BASE_URL = "https://youtube.googleapis.com/"
 
+    const val PREFS_NAME = "appPreference"
+    const val SOURCE_FRAGMENT = "SOURCE_FRAGMENT"
+
     const val HORIZON_FACEBOOK_URL = "https://www.facebook.com/thehorizonexp/"
     const val CHECK_IN_URL = "https://checkin.thehorizonexp.org/"
     const val SUNDAY = "Sunday"

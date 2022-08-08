@@ -6,21 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.horizon.horizify.R
 import com.horizon.horizify.databinding.FragmentBaseBinding
+import com.horizon.horizify.utils.Constants.SOURCE_FRAGMENT
 import com.xwray.groupie.Section
 import org.koin.core.component.KoinComponent
+import java.util.*
 
 abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.layout.fragment_base) : Fragment(baseLayout), KoinComponent {
 
-    private lateinit var binding: FragmentBaseBinding
+    protected lateinit var binding: FragmentBaseBinding
 
     protected val root by lazy { Section() }
 
     private val rootAdapter by lazy { RootAdapter() attach root }
+
+    private val subClassName by lazy { this@GroupieFragment.javaClass.asSubclass(this@GroupieFragment.javaClass).simpleName.decapitalize(Locale.getDefault()) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBaseBinding.inflate(inflater, container, false)
@@ -49,8 +55,20 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
         navigate(action)
     }
 
+    protected fun navigateWithParams(destination: String, vararg param: Pair<String, Any>) {
+        val action = createGlobalAction(destination)
+        navigate(action,  *param)
+    }
+
     private fun navigate(@IdRes destination: Int) {
         view?.findNavController()?.navigate(destination)
+    }
+
+    private fun navigate(@IdRes destination: Int, vararg param: Pair<String, Any>) {
+        view?.findNavController()?.navigate(
+            destination,
+            bundleOf(*param.toList().toTypedArray()).apply { putString(SOURCE_FRAGMENT, subClassName) }
+        )
     }
 
     /**
@@ -68,6 +86,14 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
      */
     protected fun popBack() {
         view?.findNavController()?.popBackStack()
+    }
+
+    protected fun showLoader() {
+        binding.loader.isVisible = true
+    }
+
+    protected fun hideLoader() {
+        binding.loader.isVisible = false
     }
 
     companion object {

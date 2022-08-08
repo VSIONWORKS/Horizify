@@ -6,9 +6,11 @@ import com.horizon.horizify.R
 import com.horizon.horizify.databinding.VideoItemBinding
 import com.horizon.horizify.extensions.load
 import com.horizon.horizify.ui.video.model.VideoPlaylistModel
+import com.horizon.horizify.utils.ItemAction
 import com.xwray.groupie.viewbinding.BindableItem
 
-class VideoItem(val video: VideoPlaylistModel.ItemInfo) : BindableItem<VideoItemBinding>() {
+class VideoItem(val video: VideoPlaylistModel.ItemInfo, var onClick:ItemAction ) : BindableItem<VideoItemBinding>() {
+
     override fun bind(viewBinding: VideoItemBinding, position: Int) {
         with(viewBinding) {
             if (video.snippet.thumbnails.maxres != null) imgVideo.load(video.snippet.thumbnails.maxres.url!!)
@@ -17,6 +19,10 @@ class VideoItem(val video: VideoPlaylistModel.ItemInfo) : BindableItem<VideoItem
             txtTitle.text = video.snippet.title
             if (video.snippet.description.isEmpty()) txtSpeaker.isVisible = false
             else txtSpeaker.text = video.snippet.description
+
+            layoutVideoItem.setOnClickListener {
+                onClick.actionCallback.invoke()
+            }
         }
     }
 

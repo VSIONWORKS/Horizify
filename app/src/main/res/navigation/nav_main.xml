@@ -60,4 +60,8 @@
         app:destination="@id/calendarFragment"
         app:launchSingleTop="true" />
 
+    <activity
+        android:id="@+id/videoPlayerActivity"
+        android:name="com.horizon.horizify.ui.video.VideoPlayerActivity" />
+
 </navigation>

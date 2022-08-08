@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 object VideoModule {
     val dependency = module {
-        factory<VideoRepository> { VideoRepositoryImpl(get()) }
+        factory<VideoRepository> { VideoRepositoryImpl(get(), get()) }
         factory { VideoPlayerItem(it[0]) }
         factory { VideoPlaylistItem(it[0]) }
         viewModel { VideoViewModel(get()) }

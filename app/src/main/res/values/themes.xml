@@ -11,10 +11,11 @@
         <item name="colorOnSecondary">@color/unselected_item_color</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-         Customize your theme here.
+        Customize your theme here.
     </style>
 
     <style name="Theme.ScrollingActivity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.ScrollingActivity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="BlackRippleTheme">
@@ -25,5 +26,14 @@
         <item name="android:theme">@style/BlackRippleTheme</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>
+
+    <style name="Theme.Horizify.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Horizify.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Horizify.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -1,5 +1,6 @@
 package com.horizon.horizify.service
 
+import com.horizon.horizify.ui.video.model.VideoPlaylistItemModel
 import com.horizon.horizify.ui.video.model.VideoPlaylistModel
 import com.horizon.horizify.utils.Constants.BASE_URL
 import retrofit2.Retrofit
@@ -23,6 +24,21 @@ interface NetworkService {
         @Query("pageToken") pageToken: String,
         @Query("key") apiKey: String
     ): VideoPlaylistModel
+
+    @GET("youtube/v3/playlistItems")
+    suspend fun getPlayListsItem(
+        @Query("part") part: String,
+        @Query("playlistId") playlistId: String,
+        @Query("key") apiKey: String
+    ): VideoPlaylistItemModel
+
+    @GET("youtube/v3/playlistItems")
+    suspend fun getPlayListItemNextPage(
+        @Query("part") part: String,
+        @Query("playlistId") playlistId: String,
+        @Query("pageToken") pageToken: String,
+        @Query("key") apiKey: String
+    ): VideoPlaylistItemModel
 
     companion object {
 

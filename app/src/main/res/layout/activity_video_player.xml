@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.video.VideoPlayerActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtubePlayerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/video_control"
@@ -58,5 +59,10 @@
             android:text="--:--"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_playlistItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
