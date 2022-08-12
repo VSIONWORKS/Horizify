@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationBarView
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         setContentView(binding.root)
 
 
-
         // Hide the status bar.
 //        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
     }
@@ -41,7 +41,10 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     private fun initializeNavigation() {
         val nav = navController.navInflater.inflate(R.navigation.nav_main)
-        navController.graph = nav.apply { setStartDestination(R.id.homeFragment) }
+        navController.graph = nav.apply {
+            binding.layoutToolbar.isVisible = false
+            setStartDestination(R.id.homeFragment)
+        }
         binding.bottomNavigation.setOnItemSelectedListener(this@MainActivity)
     }
 
@@ -53,8 +56,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         Log.e("menu : ", item.itemId.toString())
+        binding.layoutToolbar.isVisible = true
         when (item.itemId) {
-            R.id.menu_home -> navController.navigate(R.id.action_global_homeFragment)
+            R.id.menu_home -> {
+                binding.layoutToolbar.isVisible = false
+                navController.navigate(R.id.action_global_homeFragment)
+            }
             R.id.menu_videos -> navController.navigate(R.id.action_global_videoFragment)
             R.id.menu_podcast -> navController.navigate(R.id.action_global_podcastFragment)
             R.id.menu_calendar -> navController.navigate(R.id.action_global_calendarFragment)

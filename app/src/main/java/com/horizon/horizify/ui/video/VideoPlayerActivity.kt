@@ -31,6 +31,8 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
     private var playlistVideos: PlaylistVideosModel = PlaylistVideosModel()
 
     var videoId: String = ""
+    var initialLoad = false
+
     var mHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,22 +45,20 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         getPlaylistVideosObject()
         setUpRecyclerView()
         setUpSeekbarAndListeners()
-
+        setUpSeekbarAndListeners()
     }
 
     override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
-        if (null == p1) return
+        if (p1 == null) return
         player = p1
-
-        displayCurrentTime()
 
         // Start buffering
         // insert first video id
-        if (!p2) p1.cueVideo(videoId)
+        if (!p2) player?.cueVideo(videoId)
 
-        p1.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
-        p1.setPlayerStateChangeListener(mPlayerStateChangeListener)
-        p1.setPlaybackEventListener(mPlaybackEventListener)
+        player?.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
+        player?.setPlayerStateChangeListener(mPlayerStateChangeListener)
+        player?.setPlaybackEventListener(mPlaybackEventListener)
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
@@ -91,10 +91,19 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         }
     }
 
-    private fun loadSelected(position: Int, id: String, title: String) {
+    private fun setInitialVideo() {
+        val videos = playlistVideos.videos
+        if (!videos.isNullOrEmpty()) {
+            val video = videos[0]
+            loadSelected(0, video.snippet.resourceId.videoId, video.snippet.title, false)
+        }
+    }
+
+    private fun loadSelected(position: Int, id: String, title: String, cueVideo: Boolean = true) {
         videoId = id
-        player?.cueVideo(id)
+        if (cueVideo) player?.cueVideo(id)
         binding.txtVideoTitle.text = title
+        displayCurrentTime()
     }
 
     private fun setUpSeekbarAndListeners() {
@@ -110,12 +119,12 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
             })
 
             playVideo.setOnClickListener {
-                if (null != player && !player!!.isPlaying()) {
+                if (null != player && !player!!.isPlaying) {
                     player!!.play()
                 }
             }
             pauseVideo.setOnClickListener {
-                if (null != player && player!!.isPlaying()) {
+                if (null != player && player!!.isPlaying) {
                     player!!.pause()
                 }
             }
@@ -147,7 +156,13 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
         YouTubePlayer.PlayerStateChangeListener {
         override fun onAdStarted() {}
         override fun onError(arg0: YouTubePlayer.ErrorReason?) {}
-        override fun onLoaded(arg0: String) {}
+        override fun onLoaded(arg0: String) {
+            if (!initialLoad) {
+                initialLoad = true
+                setInitialVideo()
+            }
+        }
+
         override fun onLoading() {}
         override fun onVideoEnded() {}
         override fun onVideoStarted() {
@@ -163,7 +178,7 @@ class VideoPlayerActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedLi
     }
 
     private fun displayCurrentTime() {
-        if (null == player) return
+        if (player == null) return
         val formattedTime: String =
             formatTime(player!!.durationMillis - player!!.currentTimeMillis)
         binding.playTime!!.text = formattedTime

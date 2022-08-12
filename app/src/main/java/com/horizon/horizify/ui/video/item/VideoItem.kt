@@ -1,7 +1,6 @@
 package com.horizon.horizify.ui.video.item
 
 import android.view.View
-import androidx.core.view.isVisible
 import com.horizon.horizify.R
 import com.horizon.horizify.databinding.VideoItemBinding
 import com.horizon.horizify.extensions.load
@@ -17,8 +16,8 @@ class VideoItem(val video: VideoPlaylistModel.ItemInfo, var onClick:ItemAction )
             else imgVideo.load(video.snippet.thumbnails.high.url!!)
 
             txtTitle.text = video.snippet.title
-            if (video.snippet.description.isEmpty()) txtSpeaker.isVisible = false
-            else txtSpeaker.text = video.snippet.description
+//            if (video.snippet.description.isEmpty()) txtSpeaker.isVisible = false
+//            else txtSpeaker.text = video.snippet.description
 
             layoutVideoItem.setOnClickListener {
                 onClick.actionCallback.invoke()
