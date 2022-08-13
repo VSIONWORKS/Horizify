@@ -4,4 +4,5 @@ import com.horizon.horizify.ui.home.model.HeaderCardModel
 
 interface IHomeViewModel {
     fun getHeaderCardImages(): List<HeaderCardModel>
+    fun saveWebUrl(url: String)
 }

@@ -12,10 +12,10 @@ class HomeBodyItem : BindableItem<HomeBodyItemBinding>() {
 
     override fun bind(viewBinding: HomeBodyItemBinding, position: Int) {
         with(viewBinding) {
-            homeTest.text = "Keneki Pogi"
-            btnTest.setOnClickListener {
-                clickListener?.actionCallback?.invoke()
-            }
+//            homeTest.text = "Keneki Pogi"
+//            btnTest.setOnClickListener {
+//                clickListener?.actionCallback?.invoke()
+//            }
         }
     }
 

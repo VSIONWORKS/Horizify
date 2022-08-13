@@ -69,9 +69,4 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
         return true
     }
-
-//    override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) = handleBottomNavigation(destination)
-//
-//    private fun handleBottomNavigation(destination: NavDestination) {
-//    }
 }

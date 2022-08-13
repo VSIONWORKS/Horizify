@@ -64,4 +64,13 @@
         android:id="@+id/videoPlayerActivity"
         android:name="com.horizon.horizify.ui.video.VideoPlayerActivity" />
 
+    <activity
+        android:id="@+id/locationActivity"
+        android:name="com.horizon.horizify.ui.location.LocationActivity" />
+
+    <activity
+        android:id="@+id/webViewActivity"
+        android:name="com.horizon.horizify.ui.webView.WebViewActivity" />
+
+
 </navigation>

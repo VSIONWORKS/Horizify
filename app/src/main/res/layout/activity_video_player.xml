@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.video.VideoPlayerActivity">
-
+s
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtubePlayerView"
         android:layout_width="match_parent"

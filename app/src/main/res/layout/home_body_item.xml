@@ -4,29 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="16dp"
     android:background="@color/transparent"
     android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DISCOVER"
-        android:textAlignment="center"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        android:textSize="18sp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:clickable="true"
-        app:cardCornerRadius="6dp"
+        app:cardCornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,8 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/sample2"
-                android:scaleType="fitXY"
                 android:adjustViewBounds="true"
+                android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -79,168 +68,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        <com.google.android.material.card.MaterialCardView-->
-<!--            android:layout_width="180dp"-->
-<!--            android:layout_height="180dp"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            app:cardCornerRadius="10dp"-->
-<!--            app:cardElevation="5dp"-->
-<!--            app:cardUseCompatPadding="true"-->
-<!--            android:clickable="true"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent">-->
-
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:src="@drawable/sample4"-->
-<!--                    android:scaleType="centerCrop"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:background="@drawable/gradient_label_linear"-->
-<!--                    android:paddingVertical="5dp"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/title_text"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="12dp"-->
-<!--                        android:text="Our Story"-->
-<!--                        android:textColor="@color/semi_white"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textSize="18sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/date_text"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="12dp"-->
-<!--                        android:text="July 31, 2022"-->
-<!--                        android:textColor="@color/semi_white"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textSize="14sp" />-->
-
-<!--                </LinearLayout>-->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--        </com.google.android.material.card.MaterialCardView>-->
-
-<!--        <com.google.android.material.card.MaterialCardView-->
-<!--            android:layout_width="180dp"-->
-<!--            android:layout_height="180dp"-->
-<!--            app:cardCornerRadius="10dp"-->
-<!--            app:cardElevation="5dp"-->
-<!--            app:cardUseCompatPadding="true"-->
-<!--            android:clickable="true"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent">-->
-
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:src="@drawable/sample5"-->
-<!--                    android:scaleType="centerCrop"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:background="@drawable/gradient_label_linear"-->
-<!--                    android:paddingVertical="5dp"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/title_text2"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="12dp"-->
-<!--                        android:text="Our Belief"-->
-<!--                        android:textColor="@color/semi_white"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textSize="18sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/date_text2"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="12dp"-->
-<!--                        android:text="July 31, 2022"-->
-<!--                        android:textColor="@color/semi_white"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textSize="14sp" />-->
-
-<!--                </LinearLayout>-->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--        </com.google.android.material.card.MaterialCardView>-->
-
-<!--    </LinearLayout>-->
-
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        app:cardCornerRadius="8dp"-->
-<!--        app:cardElevation="10dp">-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="horizontal">-->
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/sample2"/>-->
-<!--        </LinearLayout>-->
-<!--    </com.google.android.material.card.MaterialCardView>-->
-
-    <TextView
-        android:id="@+id/home_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HOME"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="gone"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:visibility="gone"/>
 
 </LinearLayout>

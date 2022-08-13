@@ -6,7 +6,6 @@ import com.horizon.horizify.base.GroupieFragment
 import com.horizon.horizify.extensions.collectOnStart
 import com.horizon.horizify.extensions.launchOnStart
 import com.horizon.horizify.extensions.setBody
-import com.horizon.horizify.ui.video.item.VideoPlayerItem
 import com.horizon.horizify.ui.video.item.VideoPlaylistItem
 import com.horizon.horizify.ui.video.viewmodel.VideoViewModel
 import com.horizon.horizify.utils.PageId
@@ -21,7 +20,6 @@ class VideoFragment : GroupieFragment() {
     private var initialLoad = true
     private val videoViewModel: VideoViewModel by viewModel()
 
-    private val item by inject<VideoPlayerItem> { parametersOf(videoViewModel) }
     private val playlistItem by inject<VideoPlaylistItem> { parametersOf(videoViewModel) }
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
 

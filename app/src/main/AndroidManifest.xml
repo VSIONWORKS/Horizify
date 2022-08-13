@@ -5,6 +5,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <queries>
+        <intent>
+
+            <!-- For SDK Version 30 to enable access to other apps -->
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
 
     <application
         android:name=".HorizonApp"
@@ -27,24 +36,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.video.VideoPlayerActivity"
             android:exported="false"
             android:label="@string/title_activity_video_player"
             android:theme="@style/Theme.Horizify.NoActionBar" />
+        <activity
+            android:name=".ui.location.LocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.webView.WebViewActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
     </application>
-
-
-    <queries>
-        <intent>
-            <!--    For SDK Version 30 to enable access to other apps-->
-            <action android:name="com.google.android.youtube.api.service.START" />
-        </intent>
-    </queries>
 
 </manifest>
