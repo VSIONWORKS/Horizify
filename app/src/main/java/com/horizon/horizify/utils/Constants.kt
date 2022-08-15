@@ -1,5 +1,7 @@
 package com.horizon.horizify.utils
 
+import com.horizon.horizify.ui.bible.model.BibleVersionNameModel
+
 object Constants {
     const val YOUTUBE_API_KEY = "AIzaSyAUEbzSy4U6tVIZkSQeyCypvzpRbekvb0c"
     const val YOUTUBE_HORIZON_CHANNEL_ID = "UC5FebdXWfuDB-tKtIoa61Tg"
@@ -15,6 +17,7 @@ object Constants {
 
     const val PLAYLIST_ITEMS = "playlistItems"
     const val WEB_URL = "webUrl"
+    const val CURRENT_BIBLE = "currentBible"
 
     const val HORIZON_FACEBOOK_URL = "https://www.facebook.com/thehorizonexp/"
     const val HORIZON_URL = "https://checkin.thehorizonexp.org/"
@@ -32,4 +35,20 @@ object Constants {
     const val MATIENZA_LATITUDE = 14.597270
     const val MATIENZA_LONGITUDE = 120.997357
 
+    fun getBibleVersionName(version: BibleVersion): BibleVersionNameModel {
+        return when (version) {
+            BibleVersion.ANG_BAGONG_BIBLIA -> BibleVersionNameModel(longDescription = "Ang Bagong Ang Biblia", shortDescription = "ABAB", fileName = "bible_tagalog_abab.xml")
+            BibleVersion.ANG_DATING_BIBLIA -> BibleVersionNameModel(longDescription = "Ang Dating Biblia", shortDescription = "ADB", fileName = "bible_tagalog_adb.xml")
+            BibleVersion.THE_AMPLIFIED_BIBLE -> BibleVersionNameModel(longDescription = "The Amplified Bible", shortDescription = "AMP", fileName = "bible_english_amp")
+            BibleVersion.CONTEMPORARY_ENGLISH_VERSION -> BibleVersionNameModel(longDescription = "Contemporary English Version", shortDescription = "CEV", fileName = "bible_english_cev")
+            BibleVersion.ENGLISH_STANDARD_VERSION -> BibleVersionNameModel(longDescription = "English Standard Version", shortDescription = "ESV", fileName = "bible_english_esv")
+            BibleVersion.KING_JAMES_VERSION -> BibleVersionNameModel(longDescription = "King James Version", shortDescription = "KJV", fileName = "bible_english_kjv")
+            BibleVersion.MODERN_KING_JAMES_VERSION -> BibleVersionNameModel(longDescription = "Modern King James Version", shortDescription = "MKJV", fileName = "bible_english_mkjv.xml")
+            BibleVersion.THE_MESSAGE -> BibleVersionNameModel(longDescription = "The Message", shortDescription = "MSG", fileName = "bible_english_msg")
+            BibleVersion.NEW_AMERICAN_STANDARD_BIBLE -> BibleVersionNameModel(longDescription = "New American Standard Bible", shortDescription = "NASB", fileName = "bible_english_nasb")
+            BibleVersion.NEW_INTERNATIONAL_VERSION -> BibleVersionNameModel(longDescription = "New International Version", shortDescription = "NIV", fileName = "bible_english_niv")
+            BibleVersion.NEW_KING_JAMES_VERSION -> BibleVersionNameModel(longDescription = "New King James Version", shortDescription = "NKJV", fileName = "bible_english_nkjv")
+            else -> BibleVersionNameModel(longDescription = "Revised Standard Version", shortDescription = "RSV", fileName = "bible_english_rsv.xml")
+        }
+    }
 }

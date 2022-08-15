@@ -47,6 +47,20 @@
         app:launchSingleTop="true" />
 
     <fragment
+        android:id="@+id/bibleFragment"
+        android:name="com.horizon.horizify.ui.bible.BibleFragment">
+        <action
+            android:id="@+id/action_bibleFragment_pop"
+            app:popUpTo="@id/bibleFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_bibleFragment"
+        app:destination="@id/bibleFragment"
+        app:launchSingleTop="true" />
+
+    <fragment
         android:id="@+id/calendarFragment"
         android:name="com.horizon.horizify.ui.calendar.CalendarFragment">
         <action

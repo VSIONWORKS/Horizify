@@ -33,20 +33,21 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/title_text"
+                android:id="@+id/txt_verse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginHorizontal="16dp"
-                android:text="&quot;For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.&quot;"
-                android:textColor="@color/black_String"
+                android:layout_marginTop="12dp"
                 android:lineSpacingExtra="4sp"
-                android:textStyle="italic"
+                android:gravity="top"
+                android:text="&quot;For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.&quot;"
                 android:textAlignment="center"
-                android:textSize="14sp" />
+                android:textColor="@color/black_String"
+                android:textSize="18sp"
+                android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/date_text"
+                android:id="@+id/txt_book"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable-v24/ic_left.xml" value="0.2555" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable-v24/ic_right.xml" value="0.2555" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/blue_button.xml" value="0.1815" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/bottom_navigation_state_color.xml" value="0.232" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/calendar_current_day.xml" value="0.226" />
@@ -28,6 +30,10 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_location.xml" value="0.33" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_main.xml" value="0.26875" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_video_player.xml" value="0.225" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/bible_book_item.xml" value="0.22604166666666667" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/bible_bottomsheet.xml" value="0.365625" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/bible_chapter_page.xml" value="0.22604166666666667" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/bible_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/calendar_body_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/calendar_day.xml" value="0.21927083333333333" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/calendar_day_legend.xml" value="0.2203125" />
@@ -63,6 +69,7 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/video_playlist_item.xml" value="0.2234375" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/video_track_item.xml" value="0.2609375" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/menu/bottom_menu.xml" value="0.2677083333333333" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/xml/bible_english_amp.xml" value="0.21614583333333334" />
       </map>
     </option>
   </component>

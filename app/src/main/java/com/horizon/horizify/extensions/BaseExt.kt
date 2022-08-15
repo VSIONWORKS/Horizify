@@ -25,6 +25,7 @@ fun daysOfWeekFromLocale(): Array<DayOfWeek> {
     }
     return daysOfWeek
 }
+
 internal fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getColorCompat(color))
 
 fun View.makeVisible() {
@@ -35,8 +36,8 @@ fun View.makeInVisible() {
     visibility = View.INVISIBLE
 }
 
-fun Context.toast(message:String){
-    Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
 /**

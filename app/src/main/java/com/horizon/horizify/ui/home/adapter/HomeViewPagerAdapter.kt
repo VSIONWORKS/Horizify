@@ -19,8 +19,6 @@ class HomeViewPagerAdapter(private val cards: List<HeaderCardModel>) : RecyclerV
     }
 
     override fun getItemCount(): Int = cards.size
-
-
 }
 
 class ViewHolder(private val binding: HomeHeaderCardBinding) : RecyclerView.ViewHolder(binding.root) {

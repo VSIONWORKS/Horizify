@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             }
             R.id.menu_videos -> navController.navigate(R.id.action_global_videoFragment)
             R.id.menu_podcast -> navController.navigate(R.id.action_global_podcastFragment)
-            R.id.menu_calendar -> navController.navigate(R.id.action_global_calendarFragment)
+            R.id.menu_bible -> navController.navigate(R.id.action_global_bibleFragment)
             R.id.menu_settings -> navController.navigate(R.id.action_global_homeFragment)
         }
         return true
