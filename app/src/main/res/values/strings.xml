@@ -8,6 +8,12 @@
     <string name="str_menu_bible">Bible</string>
     <string name="str_menu_setting">Menu</string>
 
+
+    <string name="str_card_story">We envision our church to be a place where people...</string>
+    <string name="str_card_vision">Win souls and make disciples - nothing more, ....</string>
+    <string name="str_card_belief">Jesus loves people of all backgrounds and beliefs...</string>
+    <string name="str_church_description">The Church of New Beginnings and Second Chances.</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

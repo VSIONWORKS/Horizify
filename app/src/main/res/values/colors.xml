@@ -13,6 +13,7 @@
     <color name="dark_transparent">#CB3A3A3A</color>
     <color name="semi_dark_transparent">#99272727</color>
     <color name="semi_light_transparent">#72EDEBEB</color>
+    <color name="blue_light_transparent">#430773AF</color>
     <color name="dark_background">#212121</color>
     <color name="dark_toolbar">#010101</color>
     <color name="blue_toolbar">#0773AF</color>

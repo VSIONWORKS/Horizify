@@ -10,6 +10,7 @@ import com.horizon.horizify.ui.home.viewmodel.HomeViewModel
 import com.horizon.horizify.utils.Constants.CHECK_IN_URL
 import com.horizon.horizify.utils.Constants.GIVING_URL
 import com.horizon.horizify.utils.ItemAction
+import com.horizon.horizify.utils.ItemActionWithPosition
 import com.horizon.horizify.utils.PageId
 import com.horizon.horizify.utils.SingletonHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,8 +25,27 @@ class HomeFragment : GroupieFragment() {
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
         with(root) {
 
-            var bodyItem = HomeBodyItem()
-            var verseItem = HomeVerseItem()
+//            var bodyItem = HomeBodyItem()
+//            var verseItem = HomeVerseItem()
+            var footerItem = HomeFooterItem()
+
+            var bodyRecyclerItem = HomeBodyRecyclerItem(
+                onClick = ItemActionWithPosition {
+                    when(it) {
+                        CardEnum.CHECK_IN.ordinal -> {
+                            homeViewModel.saveWebUrl(CHECK_IN_URL)
+                            navigateToPage(PageId.WEBVIEW)
+                        }
+                        CardEnum.GIVING.ordinal -> {
+                            homeViewModel.saveWebUrl(GIVING_URL)
+                            navigateToPage(PageId.WEBVIEW)
+                        }
+                        CardEnum.LOCATION.ordinal -> navigateToPage(PageId.LOCATION)
+                        CardEnum.CONNECT.ordinal -> navigateToPage(PageId.LOCATION)
+                    }
+                }
+            )
+
             val bottomItem = HomeBottomItem(
                 onClick = ItemAction {
                     homeViewModel.saveWebUrl(GIVING_URL)
@@ -42,10 +62,10 @@ class HomeFragment : GroupieFragment() {
             )
 
             setHeader(homeHeaderItem)
-            setBody(verseItem, bodyItem, locationCheckInItem)
-            setFooter(bottomItem)
+            setBody(bodyRecyclerItem, bottomItem)
+            setFooter(footerItem)
 
-            bodyItem.clickListener = ItemAction { navigateToPage(PageId.CALENDAR) }
+//            bodyItem.clickListener = ItemAction { navigateToPage(PageId.CALENDAR) }
         }
     }
 

@@ -9,9 +9,17 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/bottom_navigation_state_color.xml" value="0.232" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/calendar_current_day.xml" value="0.226" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/calendar_selected_day.xml" value="0.226" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/card_1_gradient.xml" value="0.1785" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/card_gradient_1.xml" value="0.1785" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/card_gradient_2.xml" value="0.1785" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/card_gradient_3.xml" value="0.1785" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/card_gradient_4.xml" value="0.1785" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/footer_oval.xml" value="0.2" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_background_linear.xml" value="0.21" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_blue_light_linear.xml" value="0.1775" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_light_linear.xml" value="0.2405" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_linear.xml" value="0.226" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_linear_card.xml" value="0.1775" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/header_oval_bottom.xml" value="0.2395" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.2395" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.24" />
@@ -24,8 +32,13 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ripple_black.xml" value="0.241" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/transparent_dark_background.xml" value="0.2305" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/allerta.xml" value="0.25052083333333336" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/baloo.xml" value="0.2" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/bubbler_one.xml" value="0.2" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/candal.xml" value="0.2" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/oxygen_bold.xml" value="0.2546875" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/oxygen_light.xml" value="0.2" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/roboto_bold.xml" value="0.24947916666666667" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/titan_one.xml" value="0.2" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_check_in.xml" value="0.5" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_location.xml" value="0.33" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/activity_main.xml" value="0.26875" />
@@ -46,11 +59,14 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/fragment_podcast.xml" value="0.23802083333333332" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/fragment_youtube_player_item.xml" value="0.17395833333333333" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_body_item.xml" value="0.446524064171123" />
-        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_bottom_item.xml" value="0.2" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_body_recycler_card.xml" value="0.33" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_body_recycler_item.xml" value="0.33" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_bottom_item.xml" value="0.33" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_footer_item.xml" value="0.22604166666666667" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_header_card.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_header_fragment.xml" value="0.2296875" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_header_item.xml" value="0.33" />
-        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_location_checkin_item.xml" value="0.22552083333333334" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_location_checkin_item.xml" value="0.33" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_upcoming_item.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/home_verse_item.xml" value="0.25" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/map_fragment.xml" value="0.17291666666666666" />
