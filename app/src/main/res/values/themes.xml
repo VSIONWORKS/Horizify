@@ -24,7 +24,7 @@
 
     <style name="BlackRippleBackground">
         <item name="android:theme">@style/BlackRippleTheme</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
     <style name="Theme.Horizify.NoActionBar">
@@ -35,5 +35,24 @@
     <style name="Theme.Horizify.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Horizify.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <!--<item name="android:windowCloseOnTouchOutside">false</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
 </resources>

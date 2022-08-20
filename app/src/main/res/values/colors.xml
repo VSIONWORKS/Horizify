@@ -36,6 +36,9 @@
     <color name="player_button">#3aa4df</color>
 
 
+    <color name="colorRounderCorner">#676767</color>
+
+
 
 <!--    <color name="status_Bar">#2196f3</color>-->
     <color name="status_Bar">#2196f3</color>

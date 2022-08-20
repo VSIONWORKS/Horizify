@@ -6,6 +6,9 @@ import com.horizon.horizify.base.SharedPreference
 import com.horizon.horizify.extensions.get
 import com.horizon.horizify.extensions.saveObject
 import com.horizon.horizify.ui.bible.model.BibleModel
+import com.horizon.horizify.ui.bible.model.Book
+import com.horizon.horizify.ui.bible.model.Chapter
+import com.horizon.horizify.ui.bible.model.Verse
 import com.horizon.horizify.utils.BibleVersion
 import com.horizon.horizify.utils.Constants
 import com.horizon.horizify.utils.Constants.CURRENT_BIBLE
@@ -38,12 +41,12 @@ class BibleRepositoryImpl(private val context: Context, private val prefs: Share
             // setting the input to the parser
             parser.setInput(assetStream, null)
 
-            var books: ArrayList<BibleModel.Book> = arrayListOf()
-            var chapters: ArrayList<BibleModel.Chapter> = arrayListOf()
-            var verses: ArrayList<BibleModel.Verse> = arrayListOf()
+            var books: ArrayList<Book> = arrayListOf()
+            var chapters: ArrayList<Chapter> = arrayListOf()
+            var verses: ArrayList<Verse> = arrayListOf()
 
-            var book = ""
-            var chapter = ""
+            var bookStr = ""
+            var chapterStr = ""
 
             var event = parser.eventType
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -51,23 +54,23 @@ class BibleRepositoryImpl(private val context: Context, private val prefs: Share
                 if (event == XmlPullParser.START_TAG) {
 
                     when (parser.name) {
-                        TAG_B, TAG_BOOK -> book = parser.getAttributeValue(0)
-                        TAG_C, TAG_CHAPTER -> chapter = parser.getAttributeValue(0)
+                        TAG_B, TAG_BOOK -> bookStr = parser.getAttributeValue(0)
+                        TAG_C, TAG_CHAPTER -> chapterStr = parser.getAttributeValue(0)
                         TAG_V, TAG_VERSE -> {
-                            val verse = parser.getAttributeValue(0)
-                            val script = parser.nextText()
-                            verses.add(BibleModel.Verse(verse, script))
+                            val verseStr = parser.getAttributeValue(0)
+                            val scriptStr = parser.nextText()
+                            verses.add(Verse(verse = verseStr, script = scriptStr))
                         }
                     }
                 } else if (event == XmlPullParser.END_TAG) {
                     when (parser.name) {
                         TAG_B, TAG_BOOK -> {
-                            books.add(BibleModel.Book(book = book, chapters = chapters))
-                            chapters.clear()
+                            books.add(Book(book = bookStr, chapters = chapters))
+                            chapters = arrayListOf()
                         }
                         TAG_C, TAG_CHAPTER -> {
-                            chapters.add(BibleModel.Chapter(chapter = chapter, verses = verses))
-                            verses.clear()
+                            chapters.add(Chapter(chapter = chapterStr, verses = verses))
+                            verses = arrayListOf()
                         }
                     }
                 }
@@ -77,7 +80,7 @@ class BibleRepositoryImpl(private val context: Context, private val prefs: Share
             val bible = BibleModel(
                 versionLong = file.longDescription,
                 versionShort = file.shortDescription,
-                books = books
+                books = books.toList()
             )
 
             // save selected bible version

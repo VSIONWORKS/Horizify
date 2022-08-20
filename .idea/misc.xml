@@ -21,6 +21,8 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_linear.xml" value="0.226" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_linear_card.xml" value="0.1775" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/header_oval_bottom.xml" value="0.2395" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/header_oval_top.xml" value="0.2555" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2555" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.2395" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.24" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_play_circle_filled_24_white.xml" value="0.2375" />
@@ -30,7 +32,9 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.2375" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2375" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ripple_black.xml" value="0.241" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/rounded_corner_field.xml" value="0.2555" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/transparent_dark_background.xml" value="0.2305" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/white_shape.xml" value="0.2555" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/allerta.xml" value="0.25052083333333336" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/baloo.xml" value="0.2" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/font/bubbler_one.xml" value="0.2" />

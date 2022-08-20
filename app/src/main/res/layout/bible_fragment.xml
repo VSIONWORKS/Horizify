@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -117,15 +117,11 @@
 
         </LinearLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager_chapter"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_verses"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
-
-<!--    <include layout="@layout/bible_bottomsheet"-->
-<!--        style="@style/SheetDialog" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

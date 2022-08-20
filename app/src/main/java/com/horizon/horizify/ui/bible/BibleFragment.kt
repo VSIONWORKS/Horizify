@@ -17,7 +17,7 @@ class BibleFragment : GroupieFragment() {
     private var initialLoad = true
     private val bibleViewModel : BibleViewModel by viewModel()
 
-    private val bibleItem by inject<BibleItem> { parametersOf(bibleViewModel, ) }
+    private val bibleItem by inject<BibleItem> { parametersOf(bibleViewModel) }
 
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
 //        val item = BibleItem(bibleViewModel, layoutInflater)
@@ -38,7 +38,7 @@ class BibleFragment : GroupieFragment() {
             when (state) {
                 PageState.Loading -> showLoader()
                 PageState.Completed -> {
-                    bibleItem.bibleTest = bibleViewModel.currentBible()
+                    bibleItem.bible = bibleViewModel.currentBible()
                     hideLoader()
 //                    if (!initialLoad){
 //                        hideLoader()

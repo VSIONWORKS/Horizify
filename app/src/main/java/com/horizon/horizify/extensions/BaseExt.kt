@@ -63,3 +63,5 @@ fun ImageView.load(
         .apply(requestOptions)
         .into(this)
 }
+
+fun String.containsIgnoreCase(str: String): Boolean = this.contains(str, true)
