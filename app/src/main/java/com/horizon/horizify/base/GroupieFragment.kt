@@ -96,6 +96,13 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
         binding.loader.isVisible = false
     }
 
+    protected fun disableMainScroll() {
+        binding.rvRoot.setOnTouchListener { p0, p1 ->
+            p0?.parent?.requestDisallowInterceptTouchEvent(false)
+            false
+        }
+    }
+
     companion object {
         private const val DEF_TYPE = "id"
     }

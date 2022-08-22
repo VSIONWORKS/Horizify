@@ -7,7 +7,8 @@ data class BibleModel(
     val versionLong: String = "",
     val versionShort: String = "",
     val books: List<Book> = emptyList(),
-    var currentBook: String = "Genesis"
+    var currentBook: String = "Genesis", // Default Book
+    var currentChapter: String = "1" // Default Chapter
 )
 
 @Serializable

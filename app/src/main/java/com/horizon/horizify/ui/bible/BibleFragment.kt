@@ -25,6 +25,7 @@ class BibleFragment : GroupieFragment() {
             setBody(bibleItem)
             startCollect()
         }
+        disableMainScroll()
     }
 
     private fun startCollect() {
