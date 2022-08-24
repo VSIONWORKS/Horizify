@@ -8,6 +8,7 @@ import com.horizon.horizify.extensions.setBody
 import com.horizon.horizify.ui.bible.item.BibleItem
 import com.horizon.horizify.ui.bible.viewModel.BibleViewModel
 import com.horizon.horizify.utils.PageState
+import com.horizon.horizify.utils.TextToSpeechHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
@@ -17,7 +18,7 @@ class BibleFragment : GroupieFragment() {
     private var initialLoad = true
     private val bibleViewModel : BibleViewModel by viewModel()
 
-    private val bibleItem by inject<BibleItem> { parametersOf(bibleViewModel) }
+    private val bibleItem by inject<BibleItem> { parametersOf(bibleViewModel, requireActivity()) }
 
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
 //        val item = BibleItem(bibleViewModel, layoutInflater)
@@ -26,6 +27,15 @@ class BibleFragment : GroupieFragment() {
             startCollect()
         }
         disableMainScroll()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        with(root) {
+            clear()
+            setBody(bibleItem)
+        }
+        TextToSpeechHandler.shutDownSpeechEngine()
     }
 
     private fun startCollect() {

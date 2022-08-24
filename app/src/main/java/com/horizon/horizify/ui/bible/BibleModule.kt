@@ -11,7 +11,7 @@ import org.koin.dsl.module
 object BibleModule {
     val dependency = module {
         factory<BibleRepository> { BibleRepositoryImpl(androidContext(), get()) }
-        factory { BibleItem(it[0], androidContext()) }
+        factory { BibleItem(it[0], it[1], androidContext()) }
         viewModel { BibleViewModel(get()) }
     }
 }

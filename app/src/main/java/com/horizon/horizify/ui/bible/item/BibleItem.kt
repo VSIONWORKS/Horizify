@@ -11,6 +11,7 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -23,19 +24,22 @@ import com.horizon.horizify.extensions.layoutInflater
 import com.horizon.horizify.ui.bible.model.BibleModel
 import com.horizon.horizify.ui.bible.model.Book
 import com.horizon.horizify.ui.bible.viewModel.BibleViewModel
-import com.horizon.horizify.utils.BindableItemObserver
-import com.horizon.horizify.utils.ItemActionWithValue
-import com.horizon.horizify.utils.TopAlignSuperscriptSpan
+import com.horizon.horizify.utils.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
 
-class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableItem<BibleFragmentBinding>() {
 
-    private lateinit var dialog: BottomSheetDialog
+class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, val context: Context) : BindableItem<BibleFragmentBinding>() {
+
+    lateinit var dialog: BottomSheetDialog
+    private lateinit var tts: TextToSpeech
     private val bibleAdapter = GroupAdapter<GroupieViewHolder>()
 
     var bible by BindableItemObserver(BibleModel())
+
+    private var audioOn: Boolean = false
+    private var scriptToAudio: ArrayList<String> = arrayListOf()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun bind(viewBinding: BibleFragmentBinding, position: Int) {
@@ -44,15 +48,18 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
                 bibleBook.text = bible.currentBook
                 bibleVersionDescription.text = bible.versionLong
 
+                tts = TextToSpeechHandler.setUpSpeechEngine(activity)
+
                 setUpBottomSheet()
                 setScripture()
-                setUpPrevNextButtons()
+                setUpButtons()
 
-                /* setup scrollview on touch */
+//                /* setup scrollview on touch */
                 svScript.setOnTouchListener { view, motionEvent ->
                     view.parent.requestDisallowInterceptTouchEvent(true)
                     false
                 }
+//                txtVerses.movementMethod = ScrollingMovementMethod.getInstance()
             }
         }
     }
@@ -167,6 +174,7 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
     }
 
     private fun BibleFragmentBinding.setScripture() {
+        stopTextToSpeech()
         val bookIndex = getBookIndex()
         val currentChapterIndex = bible.currentChapter.toInt() - 1
         val chapter = bible.books[bookIndex].chapters[currentChapterIndex]
@@ -176,9 +184,29 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
         svScript.pageScroll(View.FOCUS_UP)
         svScript.smoothScrollTo(0, 0)
 
+//        rvScript.apply {
+//            adapter = scriptAdapter.apply {
+//                scriptAdapter.clear()
+//                add(
+//                    BibleScriptItem(
+//                        bookIndex = bookIndex,
+//                        currentChapterIndex = currentChapterIndex,
+//                        chapter = chapter,
+//                        context = context
+//                    )
+//                )
+//            }
+//
+//            layoutManager = LinearLayoutManager(context)
+//        }
+
+
+        scriptToAudio = arrayListOf()
         txtVerses.text = EMPTY_STRING
         var strVerse = txtVerses.text
         chapter.verses.forEach {
+            scriptToAudio.add(it.script)
+
             val str = "${it.verse} ${it.script}\n"
             val spannedStr = formatVerse(it.verse, str)
             strVerse = TextUtils.concat(strVerse, spannedStr)
@@ -200,18 +228,43 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
         return spannedString
     }
 
-    private fun BibleFragmentBinding.setUpPrevNextButtons() {
+    private fun BibleFragmentBinding.setUpButtons() {
+
+        imgAudio.setOnClickListener {
+            if (audioOn) stopTextToSpeech()
+            else startTextToSpeech()
+        }
+
         btnPrev.setOnClickListener {
+            stopTextToSpeech()
             val chapter = bible.currentChapter.toInt()
             if (chapter > 1) bible.currentChapter = (chapter - 1).toString()
             setScripture()
         }
         btnNext.setOnClickListener {
+            stopTextToSpeech()
             val chapter = bible.currentChapter.toInt()
             val chapters = bible.books[getBookIndex()].chapters
             if (chapter < chapters.size) bible.currentChapter = (chapter + 1).toString()
             setScripture()
         }
+    }
+
+    private fun BibleFragmentBinding.startTextToSpeech() {
+        imgAudio.imageTintList = ContextCompat.getColorStateList(context, R.color.selected_item_color)
+        audioOn = true
+        tts.setMessages(scriptToAudio)
+        tts.speak()
+    }
+
+    private fun BibleFragmentBinding.stopTextToSpeech() {
+        imgAudio.imageTintList = ContextCompat.getColorStateList(context, R.color.unselected_item_color)
+        audioOn = false
+        tts.stopEngine()
+    }
+
+    private fun back() {
+
     }
 
     companion object {
@@ -221,5 +274,4 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
         const val CHAPTER = "Chapter"
         const val CHAPTER_NO = "1"
     }
-
 }
