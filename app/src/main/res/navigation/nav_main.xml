@@ -61,6 +61,20 @@
         app:launchSingleTop="true" />
 
     <fragment
+        android:id="@+id/menuBodyFragment"
+        android:name="com.horizon.horizify.ui.menu.MenuBodyFragment">
+        <action
+            android:id="@+id/action_menuBodyFragment_pop"
+            app:popUpTo="@id/menuBodyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_menuBodyFragment"
+        app:destination="@id/menuBodyFragment"
+        app:launchSingleTop="true" />
+
+    <fragment
         android:id="@+id/calendarFragment"
         android:name="com.horizon.horizify.ui.calendar.CalendarFragment">
         <action

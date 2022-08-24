@@ -146,6 +146,7 @@
                         android:padding="18dp"
                         android:textColor="@color/black_String"
                         android:textSize="18sp"
+                        android:textIsSelectable="true"
                         tools:text="@string/large_text"/>
 
                 </LinearLayout>
