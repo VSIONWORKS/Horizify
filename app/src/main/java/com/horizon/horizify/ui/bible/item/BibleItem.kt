@@ -1,5 +1,6 @@
 package com.horizon.horizify.ui.bible.item
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.SpannableString
 import android.text.Spanned
@@ -9,6 +10,8 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,17 +33,18 @@ import com.xwray.groupie.viewbinding.BindableItem
 class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableItem<BibleFragmentBinding>() {
 
     private lateinit var dialog: BottomSheetDialog
-    private val booksAdapter = GroupAdapter<GroupieViewHolder>()
+    private val bibleAdapter = GroupAdapter<GroupieViewHolder>()
 
     var bible by BindableItemObserver(BibleModel())
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun bind(viewBinding: BibleFragmentBinding, position: Int) {
         with(viewBinding) {
             if (bible.books.isNotEmpty()) {
                 bibleBook.text = bible.currentBook
                 bibleVersionDescription.text = bible.versionLong
 
-                setUpSelectBookBottomSheet()
+                setUpBottomSheet()
                 setScripture()
                 setUpPrevNextButtons()
 
@@ -57,56 +61,65 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
     override fun initializeViewBinding(view: View): BibleFragmentBinding = BibleFragmentBinding.bind(view)
 
     private fun getBookIndex(): Int = bible.books.indexOfFirst { it.book == bible.currentBook }
+    private fun getChapterIndex(): Int = bible.books[getBookIndex()].chapters.indexOfFirst { it.chapter == bible.currentChapter }
 
-    private fun BibleFragmentBinding.setUpSelectBookBottomSheet() {
-        imgSelectBook.setOnClickListener {
-            dialog = BottomSheetDialog(root.context, R.style.CustomBottomSheetDialogTheme)
-            val sheetBinding = BibleBottomsheetBinding.inflate(context.layoutInflater)
+    private fun BibleFragmentBinding.setUpBottomSheet() {
+        dialog = BottomSheetDialog(root.context, R.style.CustomBottomSheetDialogTheme)
+        val sheetBinding = BibleBottomsheetBinding.inflate(context.layoutInflater)
 
-            with(dialog) {
-                with(sheetBinding) {
+        with(dialog) {
+            with(sheetBinding) {
+                imgSelectBook.setOnClickListener {
+                    behavior.state = BottomSheetBehavior.STATE_EXPANDED
                     setBooksRecyclerView(sheetBinding, bible.books)
-                    sheetClose.setOnClickListener { dismiss() }
+                    sheetHeader.text = SELECT_BOOK
                     svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                         override fun onQueryTextSubmit(query: String?): Boolean {
                             return false
                         }
 
                         override fun onQueryTextChange(newText: String?): Boolean {
-                            var bookList: List<Book> = bible.books.filter { it.book.containsIgnoreCase(newText ?: "") }
+                            var bookList: List<Book> = bible.books.filter { it.book.containsIgnoreCase(newText ?: EMPTY_STRING) }
                             setBooksRecyclerView(sheetBinding, bookList)
                             return false
                         }
                     })
+                    show()
+                }
+                lblChapter.setOnClickListener {
+                    behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    setChaptersRecyclerView(sheetBinding, dialog)
+                    sheetHeader.text = SELECT_CHAPTER
+                    show()
+                }
+                sheetClose.setOnClickListener { dismiss() }
+            }
+
+            // setup dialog
+            setContentView(sheetBinding.root)
+            setCancelable(false)
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            behavior.isFitToContents = false
+            behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    Log.e("newState:", "$newState")
+                    if (newState == BottomSheetBehavior.STATE_COLLAPSED) dismiss()
                 }
 
-                // setup dialog
-                setContentView(sheetBinding.root)
-                setCancelable(false)
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                behavior.isFitToContents = false
-                behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-                    override fun onStateChanged(bottomSheet: View, newState: Int) {
-                        Log.e("newState:", "$newState")
-                        if (newState == BottomSheetBehavior.STATE_COLLAPSED) dismiss()
-                    }
-
-                    override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-                })
-                show()
-            }
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+            })
         }
     }
 
     private fun BibleFragmentBinding.setBooksRecyclerView(binding: BibleBottomsheetBinding, books: List<Book>) {
         with(binding) {
+            svSearch.isVisible = true
             rvBooks.apply {
-                adapter = booksAdapter.apply {
-                    booksAdapter.clear()
+                adapter = bibleAdapter.apply {
+                    bibleAdapter.clear()
                     books.forEach {
                         add(
                             BibleBookItem(
-                                bible = bible,
                                 book = it.book,
                                 currentBook = bible.currentBook,
                                 onClick = ItemActionWithValue { chapterStr ->
@@ -121,6 +134,34 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
                     }
                 }
                 layoutManager = LinearLayoutManager(context)
+                scrollToPosition(getBookIndex())
+            }
+        }
+    }
+
+    private fun BibleFragmentBinding.setChaptersRecyclerView(binding: BibleBottomsheetBinding, dialog: BottomSheetDialog) {
+        val chapters = bible.books[getBookIndex()].chapters
+        with(binding) {
+            svSearch.isVisible = false
+            rvBooks.apply {
+                adapter = bibleAdapter.apply {
+                    bibleAdapter.clear()
+                    chapters.forEach {
+                        add(
+                            BibleChapterItem(
+                                currentChapter = bible.currentChapter,
+                                chapter = it.chapter,
+                                onClick = ItemActionWithValue { chapter ->
+                                    bible.currentChapter = chapter
+                                    setScripture()
+                                    dialog.dismiss()
+                                }
+                            )
+                        )
+                    }
+                }
+                layoutManager = GridLayoutManager(context, 4)
+                scrollToPosition(getChapterIndex())
             }
         }
     }
@@ -131,14 +172,21 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
         val chapter = bible.books[bookIndex].chapters[currentChapterIndex]
         lblChapter.text = "$CHAPTER ${bible.books[getBookIndex()].chapters[currentChapterIndex].chapter}"
 
-        txtVerses.text = ""
+        // always start to top
+        svScript.pageScroll(View.FOCUS_UP)
+        svScript.smoothScrollTo(0, 0)
+
+        txtVerses.text = EMPTY_STRING
         var strVerse = txtVerses.text
         chapter.verses.forEach {
             val str = "${it.verse} ${it.script}\n"
             val spannedStr = formatVerse(it.verse, str)
-            strVerse= TextUtils.concat(strVerse, spannedStr)
+            strVerse = TextUtils.concat(strVerse, spannedStr)
         }
         txtVerses.text = strVerse
+
+        // save current state of bible
+        viewModel.saveBible(bible)
     }
 
     private fun formatVerse(verseNo: String, text: String): SpannableString? {
@@ -147,7 +195,7 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
         val spannedString = SpannableString(text)
 
         spannedString.setSpan(TopAlignSuperscriptSpan(0.1f), 0, endCount, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        spannedString.setSpan(ForegroundColorSpan(ContextCompat.getColor(context,R.color.verse)), 0, endCount, 0);
+        spannedString.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, R.color.verse)), 0, endCount, 0);
 
         return spannedString
     }
@@ -155,18 +203,21 @@ class BibleItem(val viewModel: BibleViewModel, val context: Context) : BindableI
     private fun BibleFragmentBinding.setUpPrevNextButtons() {
         btnPrev.setOnClickListener {
             val chapter = bible.currentChapter.toInt()
-            if (chapter > 1) bible.currentChapter = (chapter-1).toString()
+            if (chapter > 1) bible.currentChapter = (chapter - 1).toString()
             setScripture()
         }
         btnNext.setOnClickListener {
             val chapter = bible.currentChapter.toInt()
             val chapters = bible.books[getBookIndex()].chapters
-            if (chapter < chapters.size) bible.currentChapter = (chapter+1).toString()
+            if (chapter < chapters.size) bible.currentChapter = (chapter + 1).toString()
             setScripture()
         }
     }
 
     companion object {
+        const val EMPTY_STRING = ""
+        const val SELECT_BOOK = "Select Book"
+        const val SELECT_CHAPTER = "Select Chapter"
         const val CHAPTER = "Chapter"
         const val CHAPTER_NO = "1"
     }

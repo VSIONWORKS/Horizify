@@ -20,6 +20,12 @@ import java.io.IOException
 
 class BibleRepositoryImpl(private val context: Context, private val prefs: SharedPreference) : BibleRepository {
 
+    override suspend fun saveCurrentBible(bible: BibleModel) {
+        // save selected bible version
+        prefs.removeValue(CURRENT_BIBLE)
+        prefs.saveObject(CURRENT_BIBLE, bible)
+    }
+
     override suspend fun getCurrentBible(): BibleModel? {
         val gson = Gson()
         val jsonObject = prefs?.get(CURRENT_BIBLE, "")
@@ -83,9 +89,7 @@ class BibleRepositoryImpl(private val context: Context, private val prefs: Share
                 books = books.toList()
             )
 
-            // save selected bible version
-            prefs.removeValue(CURRENT_BIBLE)
-            prefs.saveObject(CURRENT_BIBLE, bible)
+            saveCurrentBible(bible)
 
             return bible
 

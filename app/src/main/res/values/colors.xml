@@ -29,6 +29,7 @@
     <color name="light_grey_background">#ebecf0</color>
     <color name="dark_grey">#393838</color>
     <color name="light_grey">#8A8989</color>
+    <color name="semi_light_grey">#7A7A7A</color>
     <color name="background_dark_grey">#2E2E2E</color>
     <color name="bottom_dark_grey">#B41B1B1B</color>
     <color name="shimmer_color">#DACFCECE</color>

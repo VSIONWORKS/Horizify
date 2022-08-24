@@ -9,6 +9,7 @@ interface IBibleViewModel {
 
     val pageState: StateFlow<PageState>
 
+    fun saveBible(bible: BibleModel)
     fun getBible(version: BibleVersion)
     fun currentBible() : BibleModel
 }

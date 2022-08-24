@@ -14,6 +14,12 @@ class BibleViewModel(val repository: BibleRepository) : BaseViewModel(), IBibleV
 
     override val pageState = MutableStateFlow<PageState>(PageState.Completed)
 
+    override fun saveBible(bible: BibleModel) {
+        safeLaunch(Dispatchers.IO){
+            repository.saveCurrentBible(bible)
+        }
+    }
+
     init {
         pageState.value = PageState.Loading
         safeLaunch(Dispatchers.IO) {
