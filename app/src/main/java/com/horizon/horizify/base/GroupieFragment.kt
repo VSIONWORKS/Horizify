@@ -97,10 +97,16 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
     }
 
     protected fun disableMainScroll() {
-        binding.rvRoot.setOnTouchListener { p0, p1 ->
-            p0?.parent?.requestDisallowInterceptTouchEvent(false)
-            false
+//        binding.rvRoot.setOnTouchListener { p0, p1 ->
+//            p0?.parent?.requestDisallowInterceptTouchEvent(false)
+//            false
+//        }
+        val lm = object :LinearLayoutManager(context) {
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
         }
+        binding.rvRoot.layoutManager = lm
     }
 
     companion object {

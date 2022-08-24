@@ -33,6 +33,7 @@ import com.xwray.groupie.viewbinding.BindableItem
 class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, val context: Context) : BindableItem<BibleFragmentBinding>() {
 
     lateinit var dialog: BottomSheetDialog
+    lateinit var binding: BibleFragmentBinding
     private lateinit var tts: TextToSpeech
     private val bibleAdapter = GroupAdapter<GroupieViewHolder>()
 
@@ -43,6 +44,7 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
 
     @SuppressLint("ClickableViewAccessibility")
     override fun bind(viewBinding: BibleFragmentBinding, position: Int) {
+        binding = viewBinding
         with(viewBinding) {
             if (bible.books.isNotEmpty()) {
                 bibleBook.text = bible.currentBook
@@ -53,19 +55,14 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
                 setUpBottomSheet()
                 setScripture()
                 setUpButtons()
-
-//                /* setup scrollview on touch */
-                svScript.setOnTouchListener { view, motionEvent ->
-                    view.parent.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-//                txtVerses.movementMethod = ScrollingMovementMethod.getInstance()
             }
         }
     }
 
     override fun getLayout(): Int = R.layout.bible_fragment
     override fun initializeViewBinding(view: View): BibleFragmentBinding = BibleFragmentBinding.bind(view)
+
+    fun resetAudioButton() = binding.setScripture()
 
     private fun getBookIndex(): Int = bible.books.indexOfFirst { it.book == bible.currentBook }
     private fun getChapterIndex(): Int = bible.books[getBookIndex()].chapters.indexOfFirst { it.chapter == bible.currentChapter }
@@ -104,8 +101,7 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
 
             // setup dialog
             setContentView(sheetBinding.root)
-            setCancelable(false)
-            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            setCancelable(true)
             behavior.isFitToContents = false
             behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -141,6 +137,7 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
                     }
                 }
                 layoutManager = LinearLayoutManager(context)
+                rvBooks.setPadding(0,0,0,24)
                 scrollToPosition(getBookIndex())
             }
         }
@@ -167,7 +164,8 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
                         )
                     }
                 }
-                layoutManager = GridLayoutManager(context, 4)
+                layoutManager = GridLayoutManager(context, 5)
+                rvBooks.setPadding(20,20,20,24)
                 scrollToPosition(getChapterIndex())
             }
         }
@@ -183,23 +181,6 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
         // always start to top
         svScript.pageScroll(View.FOCUS_UP)
         svScript.smoothScrollTo(0, 0)
-
-//        rvScript.apply {
-//            adapter = scriptAdapter.apply {
-//                scriptAdapter.clear()
-//                add(
-//                    BibleScriptItem(
-//                        bookIndex = bookIndex,
-//                        currentChapterIndex = currentChapterIndex,
-//                        chapter = chapter,
-//                        context = context
-//                    )
-//                )
-//            }
-//
-//            layoutManager = LinearLayoutManager(context)
-//        }
-
 
         scriptToAudio = arrayListOf()
         txtVerses.text = EMPTY_STRING
@@ -261,10 +242,6 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
         imgAudio.imageTintList = ContextCompat.getColorStateList(context, R.color.unselected_item_color)
         audioOn = false
         tts.stopEngine()
-    }
-
-    private fun back() {
-
     }
 
     companion object {

@@ -21,7 +21,7 @@ class BibleFragment : GroupieFragment() {
     private val bibleItem by inject<BibleItem> { parametersOf(bibleViewModel, requireActivity()) }
 
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
-//        val item = BibleItem(bibleViewModel, layoutInflater)
+
         with(root) {
             setBody(bibleItem)
             startCollect()
@@ -31,10 +31,11 @@ class BibleFragment : GroupieFragment() {
 
     override fun onPause() {
         super.onPause()
-        with(root) {
-            clear()
-            setBody(bibleItem)
-        }
+        bibleItem.resetAudioButton()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         TextToSpeechHandler.shutDownSpeechEngine()
     }
 
