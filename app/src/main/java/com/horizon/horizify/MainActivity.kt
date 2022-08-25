@@ -11,8 +11,9 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationBarView
 import com.horizon.horizify.databinding.ActivityMainBinding
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
-class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener, AnimatedBottomBar.OnTabSelectListener {
 
     private lateinit var binding: ActivityMainBinding
     private var isInit = false
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             setStartDestination(R.id.homeFragment)
         }
         binding.bottomNavigation.setOnItemSelectedListener(this@MainActivity)
+        binding.bottomBar.setOnTabSelectListener(this@MainActivity)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -68,5 +70,19 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             R.id.menu_settings -> navController.navigate(R.id.action_global_menuBodyFragment)
         }
         return true
+    }
+
+    override fun onTabSelected(lastIndex: Int, lastTab: AnimatedBottomBar.Tab?, newIndex: Int, newTab: AnimatedBottomBar.Tab) {
+        binding.layoutToolbar.isVisible = true
+        when (newTab.id) {
+            R.id.menu_home -> {
+                binding.layoutToolbar.isVisible = false
+                navController.navigate(R.id.action_global_homeFragment)
+            }
+            R.id.menu_videos -> navController.navigate(R.id.action_global_videoFragment)
+            R.id.menu_podcast -> navController.navigate(R.id.action_global_podcastFragment)
+            R.id.menu_bible -> navController.navigate(R.id.action_global_bibleFragment)
+            R.id.menu_settings -> navController.navigate(R.id.action_global_menuBodyFragment)
+        }
     }
 }

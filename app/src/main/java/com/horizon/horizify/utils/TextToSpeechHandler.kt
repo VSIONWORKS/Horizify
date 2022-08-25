@@ -6,12 +6,18 @@ object TextToSpeechHandler {
 
     var engine : TextToSpeech? = null
 
-    fun setUpSpeechEngine(activity: Activity) : TextToSpeech {
-        engine = TextToSpeech(activity)
+    var onComplete : ItemAction? = null
+
+    fun setUpSpeechEngine(activity: Activity, onComplete : ItemAction) : TextToSpeech {
+        engine = TextToSpeech(activity, onComplete)
         return engine as TextToSpeech
     }
 
     fun shutDownSpeechEngine(){
         engine?.shutDown()
+    }
+
+    fun speakComplete() {
+        onComplete?.actionCallback?.invoke()
     }
 }

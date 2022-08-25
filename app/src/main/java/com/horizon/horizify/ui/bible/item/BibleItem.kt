@@ -30,6 +30,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
 
 
+
 class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, val context: Context) : BindableItem<BibleFragmentBinding>() {
 
     lateinit var dialog: BottomSheetDialog
@@ -50,8 +51,7 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
                 bibleBook.text = bible.currentBook
                 bibleVersionDescription.text = bible.versionLong
 
-                tts = TextToSpeechHandler.setUpSpeechEngine(activity)
-
+                setUpTextToSpeechEngine()
                 setUpBottomSheet()
                 setScripture()
                 setUpButtons()
@@ -63,6 +63,13 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
     override fun initializeViewBinding(view: View): BibleFragmentBinding = BibleFragmentBinding.bind(view)
 
     fun resetAudioButton() = binding.setScripture()
+
+    private fun BibleFragmentBinding.setUpTextToSpeechEngine() {
+        tts = TextToSpeechHandler.setUpSpeechEngine(
+            activity = activity,
+            onComplete = ItemAction { stopTextToSpeech() }
+        )
+    }
 
     private fun getBookIndex(): Int = bible.books.indexOfFirst { it.book == bible.currentBook }
     private fun getChapterIndex(): Int = bible.books[getBookIndex()].chapters.indexOfFirst { it.chapter == bible.currentChapter }
@@ -217,13 +224,11 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
         }
 
         btnPrev.setOnClickListener {
-            stopTextToSpeech()
             val chapter = bible.currentChapter.toInt()
             if (chapter > 1) bible.currentChapter = (chapter - 1).toString()
             setScripture()
         }
         btnNext.setOnClickListener {
-            stopTextToSpeech()
             val chapter = bible.currentChapter.toInt()
             val chapters = bible.books[getBookIndex()].chapters
             if (chapter < chapters.size) bible.currentChapter = (chapter + 1).toString()
@@ -241,7 +246,7 @@ class BibleItem(val viewModel: BibleViewModel, val activity: FragmentActivity, v
     private fun BibleFragmentBinding.stopTextToSpeech() {
         imgAudio.imageTintList = ContextCompat.getColorStateList(context, R.color.unselected_item_color)
         audioOn = false
-        tts.stopEngine()
+        if(tts != null) tts.stopEngine()
     }
 
     companion object {

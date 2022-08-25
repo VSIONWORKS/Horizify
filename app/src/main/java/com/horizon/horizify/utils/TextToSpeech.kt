@@ -6,7 +6,7 @@ import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import java.util.*
 
-open class TextToSpeech(private val activity: Activity, isPH: Boolean = false) : TextToSpeech.OnInitListener, TextToSpeech.OnUtteranceCompletedListener {
+open class TextToSpeech(private val activity: Activity, private val onComplete : ItemAction ,isPH: Boolean = false) : TextToSpeech.OnInitListener, TextToSpeech.OnUtteranceCompletedListener {
 
     private val tts: TextToSpeech = TextToSpeech(activity, this)
 
@@ -60,10 +60,11 @@ open class TextToSpeech(private val activity: Activity, isPH: Boolean = false) :
     }
 
     override fun onUtteranceCompleted(p0: String?) {
-        if (counter != messages.size - 1) {
+        if (counter != messages.size) {
             speakOut(messages[counter])
             counter++
         }
+        else onComplete.actionCallback.invoke()
     }
 
     fun stopEngine() {

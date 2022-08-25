@@ -15,6 +15,10 @@
 
     <action
         android:id="@+id/action_global_homeFragment"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit"
+        app:popEnterAnim="@anim/fragment_fade_exit"
+        app:popExitAnim="@anim/fragment_fade_enter"
         app:destination="@id/homeFragment"
         app:launchSingleTop="true" />
 
@@ -25,10 +29,15 @@
             android:id="@+id/action_videoFragment_pop"
             app:popUpTo="@id/videoFragment"
             app:popUpToInclusive="true" />
+
     </fragment>
 
     <action
         android:id="@+id/action_global_videoFragment"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit"
+        app:popEnterAnim="@anim/fragment_fade_exit"
+        app:popExitAnim="@anim/fragment_fade_enter"
         app:destination="@id/videoFragment"
         app:launchSingleTop="true" />
 
@@ -43,6 +52,10 @@
 
     <action
         android:id="@+id/action_global_podcastFragment"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit"
+        app:popEnterAnim="@anim/fragment_fade_exit"
+        app:popExitAnim="@anim/fragment_fade_enter"
         app:destination="@id/podcastFragment"
         app:launchSingleTop="true" />
 
@@ -57,6 +70,10 @@
 
     <action
         android:id="@+id/action_global_bibleFragment"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit"
+        app:popEnterAnim="@anim/fragment_fade_exit"
+        app:popExitAnim="@anim/fragment_fade_enter"
         app:destination="@id/bibleFragment"
         app:launchSingleTop="true" />
 
@@ -71,6 +88,10 @@
 
     <action
         android:id="@+id/action_global_menuBodyFragment"
+        app:enterAnim="@anim/fragment_fade_enter"
+        app:exitAnim="@anim/fragment_fade_exit"
+        app:popEnterAnim="@anim/fragment_fade_exit"
+        app:popExitAnim="@anim/fragment_fade_enter"
         app:destination="@id/menuBodyFragment"
         app:launchSingleTop="true" />
 

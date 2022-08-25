@@ -51,7 +51,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu"
-        app:elevation="10dp"
+        app:elevation="0dp"
         app:itemIconTint="@color/bottom_navigation_state_color"
         app:labelVisibilityMode="labeled"/>
+
+    <nl.joery.animatedbottombar.AnimatedBottomBar
+        android:id="@+id/bottom_bar"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="10dp"
+        android:visibility="gone"
+        app:abb_tabColor="@color/unselected_item_color"
+        app:abb_selectedTabType="text"
+        app:abb_rippleEnabled="true"
+        app:abb_animationInterpolator="@android:anim/overshoot_interpolator"
+        app:abb_indicatorAppearance="round"
+        app:abb_indicatorMargin="16dp"
+        app:abb_indicatorHeight="4dp"
+        app:abb_indicatorLocation="top"
+        app:abb_tabs="@menu/bottom_menu"
+        app:abb_selectedIndex="0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
