@@ -13,8 +13,8 @@ import com.horizon.horizify.databinding.CalendarDayBinding
 import com.horizon.horizify.databinding.CalendarItemBinding
 import com.horizon.horizify.extensions.daysOfWeekFromLocale
 import com.horizon.horizify.extensions.setTextColorRes
+import com.horizon.horizify.ui.calendar.CalendarEventColorEnum
 import com.horizon.horizify.ui.calendar.viewmodel.CalendarViewModel
-import com.horizon.horizify.ui.calendar.viewmodel.EventColor
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.model.InDateStyle
@@ -187,12 +187,12 @@ class CalendarItem(val viewModel: CalendarViewModel) : BindableItem<CalendarItem
 
     override fun initializeViewBinding(view: View): CalendarItemBinding = CalendarItemBinding.bind(view)
 
-    private fun getEventColor(color: EventColor): Int {
+    private fun getEventColor(color: CalendarEventColorEnum): Int {
         return when(color) {
-            EventColor.BLUE -> R.color.calendar_event_blue
-            EventColor.RED -> R.color.calendar_event_red
-            EventColor.GREEN -> R.color.calendar_event_green
-            EventColor.PURPLE -> R.color.calendar_event_purple
+            CalendarEventColorEnum.BLUE -> R.color.calendar_event_blue
+            CalendarEventColorEnum.RED -> R.color.calendar_event_red
+            CalendarEventColorEnum.GREEN -> R.color.calendar_event_green
+            CalendarEventColorEnum.PURPLE -> R.color.calendar_event_purple
             else -> R.color.calendar_event_blue
         }
     }
