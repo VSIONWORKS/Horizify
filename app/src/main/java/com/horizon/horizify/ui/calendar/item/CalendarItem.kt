@@ -1,12 +1,12 @@
 package com.horizon.horizify.ui.calendar.item
 
 import android.animation.ValueAnimator
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.view.children
+import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import com.horizon.horizify.R
 import com.horizon.horizify.databinding.CalendarDayBinding
@@ -14,6 +14,7 @@ import com.horizon.horizify.databinding.CalendarItemBinding
 import com.horizon.horizify.extensions.daysOfWeekFromLocale
 import com.horizon.horizify.extensions.setTextColorRes
 import com.horizon.horizify.ui.calendar.viewmodel.CalendarViewModel
+import com.horizon.horizify.ui.calendar.viewmodel.EventColor
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.model.InDateStyle
@@ -27,6 +28,7 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
+
 
 class CalendarItem(val viewModel: CalendarViewModel) : BindableItem<CalendarItemBinding>() {
 
@@ -53,24 +55,31 @@ class CalendarItem(val viewModel: CalendarViewModel) : BindableItem<CalendarItem
             exOneCalendar.dayBinder = object : DayBinder<DayViewContainer> {
                 override fun bind(container: DayViewContainer, day: CalendarDay) {
                     container.day = day
+                    val dateStr = day.date
+                    val event = viewModel.hasEvent(day.date.toString())
+
                     val textView = container.textView
+                    val eventLine = container.eventLine
                     textView.text = day.date.dayOfMonth.toString()
 
                     if (day.owner == DayOwner.THIS_MONTH) {
-                        when (day.date) {
+                        when (dateStr) {
                             viewModel.selectedDate -> {
                                 textView.setTextColorRes(R.color.semi_white)
                                 textView.setBackgroundResource(R.drawable.calendar_selected_day)
+                                eventLine.isVisible = false
                             }
                             today -> {
                                 textView.setTextColorRes(R.color.semi_white)
                                 textView.setBackgroundResource(R.drawable.calendar_current_day)
+                                eventLine.isVisible = false
                             }
                             else -> {
-                                Log.e("date here", "${day.day}, ${day.date}, ${viewModel.isSunday(day.date)}")
-                                if (viewModel.isSunday(day.date)) textView.setTextColorRes(R.color.sunday)
+                                if (viewModel.isSunday(dateStr)) textView.setTextColorRes(R.color.sunday)
                                 else textView.setTextColorRes(R.color.blue_toolbar)
 
+                                eventLine.isVisible = event.hasEvent
+                                eventLine.setBackgroundResource(getEventColor(event.eventColor))
                                 textView.background = null
                             }
                         }
@@ -178,17 +187,22 @@ class CalendarItem(val viewModel: CalendarViewModel) : BindableItem<CalendarItem
 
     override fun initializeViewBinding(view: View): CalendarItemBinding = CalendarItemBinding.bind(view)
 
-//    private fun isSunday(date: Int): Boolean {
-//        val dateFormat = SimpleDateFormat("EEEE")
-//        val day = dateFormat.format(date).toString()
-//        return day == Constants.SUNDAY
-//    }
+    private fun getEventColor(color: EventColor): Int {
+        return when(color) {
+            EventColor.BLUE -> R.color.calendar_event_blue
+            EventColor.RED -> R.color.calendar_event_red
+            EventColor.GREEN -> R.color.calendar_event_green
+            EventColor.PURPLE -> R.color.calendar_event_purple
+            else -> R.color.calendar_event_blue
+        }
+    }
 }
 
 class DayViewContainer(viewModel: CalendarViewModel, binding: CalendarItemBinding, view: View) : ViewContainer(view) {
     // Will be set when this container is bound. See the dayBinder.
     lateinit var day: CalendarDay
     val textView = CalendarDayBinding.bind(view).exOneDayText
+    val eventLine = CalendarDayBinding.bind(view).vEvent
 
     init {
         view.setOnClickListener {

@@ -22,7 +22,7 @@ class HomeVerseItem : BindableItem<HomeVerseItemBinding>() {
     private fun createIndentedText(text: String, marginFirstLine: Int, marginNextLines: Int): SpannableString? {
         val ss1 = SpannableString(text)
         ss1.setSpan(TopAlignSuperscriptSpan(0.1f), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        ss1.setSpan(ForegroundColorSpan(Color.RED), 0, 1, 0);
+        ss1.setSpan(ForegroundColorSpan(Color.RED), 0, 1, 0)
 
         return ss1
     }
