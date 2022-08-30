@@ -2,6 +2,7 @@ package com.horizon.horizify.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.horizon.horizify.databinding.HomeHeaderCardBinding
 import com.horizon.horizify.ui.home.model.HeaderCardModel
@@ -23,6 +24,12 @@ class HomeViewPagerAdapter(private val cards: List<HeaderCardModel>) : RecyclerV
 
 class ViewHolder(private val binding: HomeHeaderCardBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(card: HeaderCardModel) {
-        binding.cardHeader.setImageResource(card.drawableId)
+        with(binding) {
+            if (card.isDefault) {
+                cardHeader.isVisible = false
+                cardHeaderAdd.isVisible = true
+            }
+            else cardHeader.setImageResource(card.drawableId)
+        }
     }
 }

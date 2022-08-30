@@ -15,9 +15,9 @@ class HomeViewModel(val context: Context) : BaseViewModel(), IHomeViewModel {
     override fun getHeaderCardImages(): List<HeaderCardModel> {
         // temporary implementation for local fetching
         val cardList = arrayListOf<HeaderCardModel>()
-        cardList.add(HeaderCardModel(R.drawable.header))
-        cardList.add(HeaderCardModel(R.drawable.g12))
-        cardList.add(HeaderCardModel(R.drawable.hoorayzone))
+        cardList.add(HeaderCardModel(drawableId = R.drawable.header))
+        cardList.add(HeaderCardModel(drawableId = R.drawable.g12))
+        cardList.add(HeaderCardModel(drawableId = R.drawable.hoorayzone))
         return cardList
     }
 

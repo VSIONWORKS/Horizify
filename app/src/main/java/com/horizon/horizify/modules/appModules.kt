@@ -1,5 +1,6 @@
 package com.horizon.horizify.modules
 
+import com.horizon.horizify.ui.admin.AdminModule
 import com.horizon.horizify.ui.bible.BibleModule
 import com.horizon.horizify.ui.calendar.CalendarModule
 import com.horizon.horizify.ui.home.HomeModule
@@ -13,7 +14,8 @@ val appModules = listOf(
     CalendarModule.dependency,
     PodcastModule.dependency,
     VideoModule.dependency,
-    BibleModule.dependency
+    BibleModule.dependency,
+    AdminModule.dependency
 )
 
 

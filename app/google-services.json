@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "46586916865",
+    "project_id": "horizify",
+    "storage_bucket": "horizify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46586916865:android:e14bf0fcea8caf47925000",
+        "android_client_info": {
+          "package_name": "com.horizon.horizify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46586916865-ks8c1h33svpu7ccib20lfjs745hsmolr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.horizon.horizify",
+            "certificate_hash": "59d11ad242a30520326b312b3d563e0afa559f5a"
+          }
+        },
+        {
+          "client_id": "46586916865-ls7efibjbp36difejn73iqn0gohfij7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtmXm4lNft_j2B6WEBmWyJY-vov9Rf5cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46586916865-ls7efibjbp36difejn73iqn0gohfij7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

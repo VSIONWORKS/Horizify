@@ -26,7 +26,7 @@ class MenuBodyFragment : GroupieFragment() {
 
     private fun menuClick( menu: MenuEnum ) {
         when(menu) {
-            MenuEnum.ADMIN ->{}
+            MenuEnum.ADMIN ->{ navigateToPage(PageId.ADMIN) }
             MenuEnum.PROFILE ->{}
             MenuEnum.CALENDAR ->{ navigateToPage(PageId.CALENDAR)}
             MenuEnum.PREFERENCES ->{}

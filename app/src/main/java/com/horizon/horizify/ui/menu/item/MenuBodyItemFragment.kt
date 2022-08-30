@@ -12,7 +12,7 @@ import com.horizon.horizify.ui.menu.MenuEnum
 import com.horizon.horizify.utils.ItemActionWithValue
 import com.xwray.groupie.viewbinding.BindableItem
 
-class MenuBodyItemFragment(val onMenuClick: ItemActionWithValue<MenuEnum>, private val isAdmin: Boolean = false) : BindableItem<MenuBodyItemBinding>() {
+class MenuBodyItemFragment(val onMenuClick: ItemActionWithValue<MenuEnum>, private val isAdmin: Boolean = true) : BindableItem<MenuBodyItemBinding>() {
 
     override fun bind(viewBinding: MenuBodyItemBinding, position: Int) {
         with(viewBinding){

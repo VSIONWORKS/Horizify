@@ -7,4 +7,5 @@ object PageId {
     const val MENU = "menuFragment"
     const val LOCATION = "locationActivity"
     const val WEBVIEW = "webViewActivity"
+    const val ADMIN = "adminActivity"
 }
