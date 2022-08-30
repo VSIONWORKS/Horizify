@@ -8,14 +8,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Events"
-        android:textStyle="bold"
-        android:textColor="@color/black_String_light"
-        android:textSize="24dp"/>
-
-    <TextView
         android:id="@+id/txt_no_events"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +15,8 @@
         android:text="No Events"
         android:textColor="@color/light_blue"
         android:textSize="18dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_events"
