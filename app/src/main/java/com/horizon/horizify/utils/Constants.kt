@@ -12,6 +12,18 @@ object Constants {
     const val CHECK_IN_URL = "https://checkin.thehorizonexp.org/events"
     const val GIVING_URL = "https://app.bux.ph/HorizonMinistries"
 
+    const val PRIMARY = "primary"
+
+    // Firebase Storage Location
+    const val PRIMARY_BANNER_STORAGE = "/image/admin/banner/primary/"
+    const val BANNER_STORAGE = "/image/admin/banner/carousel/"
+    const val NETWORK_STORAGE = "/image/networks/"
+
+    // Firebase Database Location
+    const val PRIMARY_BANNER_DATABASE = "/data/admin/banner/"
+    const val BANNER_DATABASE= "/data/admin/banner/carousel/"
+    const val NETWORK_DATABASE = "/data/networks/"
+
     const val PREFS_NAME = "appPreference"
     const val SOURCE_FRAGMENT = "SOURCE_FRAGMENT"
 
@@ -22,6 +34,11 @@ object Constants {
     const val HORIZON_FACEBOOK_URL = "https://www.facebook.com/thehorizonexp/"
     const val HORIZON_URL = "https://checkin.thehorizonexp.org/"
     const val SUNDAY = "Sunday"
+
+    const val ADMIN = "Admin"
+    const val SETUP_BANNER = "Setup Banner"
+    const val PRIMARY_BANNER = "Primary Banner"
+    const val ADD_BANNER = "Add Banner"
 
     const val PODCAST_TRACKS = "https://thehorizonexp.org/podcast/rss.xml"
 

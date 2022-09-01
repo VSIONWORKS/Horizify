@@ -7,8 +7,9 @@
     android:background="@color/transparent">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_banner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:clickable="true"
         app:cardUseCompatPadding="true"
         app:cardElevation="6dp"
@@ -24,7 +25,6 @@
                 android:id="@+id/card_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/header"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +33,9 @@
 
             <ImageView
                 android:id="@+id/card_header_add"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/ic_baseline_add_24"
-                android:adjustViewBounds="true"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

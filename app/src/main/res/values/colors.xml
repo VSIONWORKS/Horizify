@@ -40,6 +40,8 @@
     <color name="bottom_dark_grey">#B41B1B1B</color>
     <color name="shimmer_color">#DACFCECE</color>
 
+    <color name="text_field">#E2E4E4</color>
+
     <color name="black_String">#2C2C2C</color>
     <color name="black_String_light">#434343</color>
     <color name="player_button">#3aa4df</color>

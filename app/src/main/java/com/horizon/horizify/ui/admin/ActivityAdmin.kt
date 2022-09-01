@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.horizon.horizify.databinding.ActivityAdminBinding
 import com.horizon.horizify.ui.admin.viewmodel.AdminViewModel
-import com.horizon.horizify.ui.home.adapter.HomeViewPagerAdapter
-import com.horizon.horizify.utils.DepthPageTransformer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ActivityAdmin : AppCompatActivity() {
@@ -25,11 +23,11 @@ class ActivityAdmin : AppCompatActivity() {
     }
 
     private fun loadBannerCarousel() {
-        val cards = adminViewModel.getBannerCarousels()
-        with(binding) {
-            vpCarousel.adapter = HomeViewPagerAdapter(cards)
-            vpCarousel.setPageTransformer(DepthPageTransformer())
-            headerDots.attachTo(vpCarousel)
-        }
+//        val cards = adminViewModel.getBannerCarousels()
+//        with(binding) {
+//            vpCarousel.adapter = HomeViewPagerAdapter(cards)
+//            vpCarousel.setPageTransformer(DepthPageTransformer())
+//            headerDots.attachTo(vpCarousel)
+//        }
     }
 }

@@ -1,11 +1,13 @@
 package com.horizon.horizify.ui.home.item
 
+import android.util.Log
 import android.view.View
 import com.horizon.horizify.R
 import com.horizon.horizify.databinding.HomeHeaderItemBinding
 import com.horizon.horizify.ui.home.adapter.HomeViewPagerAdapter
 import com.horizon.horizify.ui.home.viewmodel.HomeViewModel
 import com.horizon.horizify.utils.DepthPageTransformer
+import com.horizon.horizify.utils.ItemActionWithValue
 import com.horizon.horizify.utils.SingletonHandler
 import com.horizon.horizify.utils.SingletonHandler.runnable
 import com.xwray.groupie.viewbinding.BindableItem
@@ -22,7 +24,7 @@ class HomeHeaderItem(viewModel: HomeViewModel) : BindableItem<HomeHeaderItemBind
 
             var currentItem = headerViewPager.currentItem
 
-            headerViewPager.adapter = HomeViewPagerAdapter(cards)
+            headerViewPager.adapter = HomeViewPagerAdapter(cards = cards, onClick = ItemActionWithValue { Log.e("todo here", it.toString()) })
             headerViewPager.setPageTransformer(DepthPageTransformer())
             headerDots.attachTo(headerViewPager)
 

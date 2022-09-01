@@ -106,12 +106,50 @@
 
     <action
         android:id="@+id/action_global_calendarFragment"
-        app:enterAnim="@anim/fragment_fade_enter"
-        app:exitAnim="@anim/fragment_fade_exit"
-        app:popEnterAnim="@anim/fragment_fade_exit"
-        app:popExitAnim="@anim/fragment_fade_enter"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
         app:destination="@id/calendarFragment"
         app:launchSingleTop="true" />
+
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.horizon.horizify.ui.admin.AdminFragment">
+        <action
+            android:id="@+id/action_adminFragment_pop"
+            app:popUpTo="@id/adminFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_adminFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
+        app:destination="@id/adminFragment"
+        app:launchSingleTop="true" />
+
+    <fragment
+        android:id="@+id/adminSetupFragment"
+        android:name="com.horizon.horizify.ui.admin.AdminSetupFragment">
+        <action
+            android:id="@+id/action_adminSetupFragment_pop"
+            app:popUpTo="@id/adminSetupFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_adminSetupFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
+        app:destination="@id/adminSetupFragment"
+        app:launchSingleTop="true" />
+
+
 
     <activity
         android:id="@+id/videoPlayerActivity"
