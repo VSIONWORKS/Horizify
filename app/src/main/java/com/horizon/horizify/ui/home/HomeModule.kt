@@ -9,6 +9,6 @@ import org.koin.dsl.module
 object HomeModule {
     val dependency = module {
         factory { HomeHeaderItem(it[0]) }
-        viewModel { HomeViewModel(androidContext()) }
+        viewModel { HomeViewModel(androidContext(), get()) }
     }
 }

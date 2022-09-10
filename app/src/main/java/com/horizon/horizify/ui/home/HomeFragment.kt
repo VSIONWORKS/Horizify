@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.horizon.horizify.base.GroupieFragment
+import com.horizon.horizify.extensions.collectOnStart
 import com.horizon.horizify.extensions.setBody
 import com.horizon.horizify.ui.home.item.*
 import com.horizon.horizify.ui.home.viewmodel.HomeViewModel
@@ -65,7 +66,13 @@ class HomeFragment : GroupieFragment() {
             setBody(bodyRecyclerItem, bottomItem)
             setFooter(footerItem)
 
-//            bodyItem.clickListener = ItemAction { navigateToPage(PageId.CALENDAR) }
+            startCollect()
+        }
+    }
+
+    private fun startCollect() {
+        with(homeViewModel){
+            bannerCarousel.collectOnStart(viewLifecycleOwner, homeHeaderItem::model)
         }
     }
 
