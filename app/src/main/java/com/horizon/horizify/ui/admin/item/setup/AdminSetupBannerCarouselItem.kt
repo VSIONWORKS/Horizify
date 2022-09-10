@@ -1,11 +1,16 @@
 package com.horizon.horizify.ui.admin.item.setup
 
+import android.inputmethodservice.InputMethodService
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.horizon.horizify.R
-import com.horizon.horizify.commonModel.BannerModel
+import com.horizon.horizify.commonModel.BannerTypeModel
 import com.horizon.horizify.commonModel.ImageUriModel
 import com.horizon.horizify.databinding.AdminSetupBannerCarouselItemBinding
+import com.horizon.horizify.extensions.loadFitCenter
+import com.horizon.horizify.extensions.trimAllSpaces
 import com.horizon.horizify.ui.admin.AdminSetupEnum
 import com.horizon.horizify.ui.admin.viewmodel.AdminViewModel
 import com.horizon.horizify.utils.BindableItemObserver
@@ -14,20 +19,29 @@ import com.horizon.horizify.utils.Constants.PRIMARY_BANNER
 import com.horizon.horizify.utils.ItemAction
 import com.xwray.groupie.viewbinding.BindableItem
 
-class AdminSetupBannerCarouselItem(val viewModel: AdminViewModel, private val isPrimary: Boolean, val onImagePick: ItemAction) : BindableItem<AdminSetupBannerCarouselItemBinding>() {
+class AdminSetupBannerCarouselItem(val viewModel: AdminViewModel, val onImagePick: ItemAction) : BindableItem<AdminSetupBannerCarouselItemBinding>() {
 
-    val model by BindableItemObserver(BannerModel())
+    private var postId: String = ""
+    private var isUpdate: Boolean = false
+    var model by BindableItemObserver(BannerTypeModel())
     var imageUriModel by BindableItemObserver(ImageUriModel())
 
     override fun bind(viewBinding: AdminSetupBannerCarouselItemBinding, position: Int) {
         with(viewBinding) {
-            textBanner.text = if (isPrimary) PRIMARY_BANNER else ADD_BANNER
+            postId = model.banner.title.trimAllSpaces()
+            when (model.type) {
+                AdminSetupEnum.PRIMARY_BANNER -> textBanner.text = PRIMARY_BANNER
+                AdminSetupEnum.BANNER -> {
+                    textBanner.text = ADD_BANNER
+                    if (!model.banner.image.isNullOrEmpty()) btnRemove.isVisible = true
+                }
+            }
             cardPrimaryBanner.setOnClickListener { onImagePick.actionCallback.invoke() }
 
-            val uri = imageUriModel
-            imageBanner.setImageURI(uri.uri)
+            setUpBannerValues()
 
             btnSave.setOnClickListener { validate() }
+            btnRemove.setOnClickListener { removeBanner() }
         }
     }
 
@@ -35,7 +49,34 @@ class AdminSetupBannerCarouselItem(val viewModel: AdminViewModel, private val is
 
     override fun initializeViewBinding(view: View): AdminSetupBannerCarouselItemBinding = AdminSetupBannerCarouselItemBinding.bind(view)
 
+    private fun AdminSetupBannerCarouselItemBinding.setUpBannerValues() {
+
+        if (imageUriModel.uri != null) {
+            // used when selecting image from device
+            imageBanner.setImageURI(imageUriModel.uri)
+            imgAdd.isVisible = false
+            if (!model.banner.image.isNullOrEmpty()) isUpdate = true
+
+        } else {
+            // used to load banner image from fetched data
+            imageBanner.loadFitCenter(model.banner.image)
+            if (!model.banner.image.isNullOrEmpty()) {
+                btnSave.text = "Update Banner"
+                imgAdd.isVisible = false
+            }
+        }
+
+        textTitle.setText(model.banner.title)
+        textDescription.setText(model.banner.description)
+        textLinkCaption.setText(model.banner.linkCaption)
+        textLink.setText(model.banner.link)
+    }
+
     private fun AdminSetupBannerCarouselItemBinding.validate() {
+
+        val imm: InputMethodManager = root.context.getSystemService(InputMethodService.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(root.windowToken, 0)
+
         val title = textTitle.text.toString()
         val description = textDescription.text.toString()
         val linkCaption = textLinkCaption.text.toString()
@@ -44,18 +85,28 @@ class AdminSetupBannerCarouselItem(val viewModel: AdminViewModel, private val is
         if (title.isEmpty() || description.isEmpty()) Toast.makeText(root.context, "Please input required fields", Toast.LENGTH_SHORT).show()
         else if (linkCaption.isNotEmpty() and link.isEmpty()) Toast.makeText(root.context, "Please input link", Toast.LENGTH_SHORT).show()
         else if (linkCaption.isEmpty() and link.isNotEmpty()) Toast.makeText(root.context, "Please input link caption", Toast.LENGTH_SHORT).show()
-        else save(
-            BannerModel(
+        else if (model.banner.image.isNullOrEmpty() && imageUriModel.uri == null) Toast.makeText(root.context, "Upload na Image", Toast.LENGTH_SHORT).show()
+        else {
+            var banner = model.banner.copy(
                 title = title,
                 description = description,
                 linkCaption = linkCaption,
                 link = link
             )
-        )
+
+            with(viewModel) {
+                if (!model.banner.image.isNullOrEmpty() && (isUpdate || model.banner != banner)) {
+                    updateBanner(model.type, banner, postId)
+                }
+                else {
+                    banner = banner.copy(date = viewModel.getCurrentDateTime())
+                    save(model.type, banner)
+                }
+            }
+        }
     }
 
-    private fun save(bannerModel: BannerModel) {
-        val type = if (isPrimary) AdminSetupEnum.PRIMARY_BANNER else AdminSetupEnum.BANNER
-        viewModel.saveBanner(type, bannerModel)
+    private fun removeBanner() {
+        viewModel.removeBanner(model.type, model.banner, postId)
     }
 }

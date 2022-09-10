@@ -13,15 +13,16 @@ object Constants {
     const val GIVING_URL = "https://app.bux.ph/HorizonMinistries"
 
     const val PRIMARY = "primary"
+    const val BANNER = "banner_"
 
     // Firebase Storage Location
-    const val PRIMARY_BANNER_STORAGE = "/image/admin/banner/primary/"
-    const val BANNER_STORAGE = "/image/admin/banner/carousel/"
+    const val PRIMARY_BANNER_STORAGE = "/image/banner/primary/"
+    const val BANNER_STORAGE = "/image/banner/carousel/"
     const val NETWORK_STORAGE = "/image/networks/"
 
     // Firebase Database Location
-    const val PRIMARY_BANNER_DATABASE = "/data/admin/banner/"
-    const val BANNER_DATABASE= "/data/admin/banner/carousel/"
+    const val PRIMARY_BANNER_DATABASE = "/data/banner/"
+    const val BANNER_DATABASE= "/data/banner/carousel/"
     const val NETWORK_DATABASE = "/data/networks/"
 
     const val PREFS_NAME = "appPreference"

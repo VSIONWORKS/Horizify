@@ -4,14 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.horizon.horizify.commonModel.BannerModel
 import com.horizon.horizify.databinding.HomeHeaderCardBinding
-import com.horizon.horizify.extensions.load
+import com.horizon.horizify.extensions.loadFitCenter
 import com.horizon.horizify.ui.home.model.HeaderCardModel
-import com.horizon.horizify.utils.ItemActionWithValue
+import com.horizon.horizify.utils.ItemAction
 
 
-class HomeViewPagerAdapter(private val cards: List<HeaderCardModel>, val onClick: ItemActionWithValue<BannerModel>) : RecyclerView.Adapter<ViewHolder>() {
+class HomeViewPagerAdapter(private val cards: List<HeaderCardModel>, val onClick: ItemAction) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = HomeHeaderCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,7 +24,7 @@ class HomeViewPagerAdapter(private val cards: List<HeaderCardModel>, val onClick
     override fun getItemCount(): Int = cards.size
 }
 
-class ViewHolder(private val binding: HomeHeaderCardBinding, val onClick: ItemActionWithValue<BannerModel>) : RecyclerView.ViewHolder(binding.root) {
+class ViewHolder(private val binding: HomeHeaderCardBinding, val onClick: ItemAction) : RecyclerView.ViewHolder(binding.root) {
     fun bind(card: HeaderCardModel) {
         with(binding) {
             if (card.isDefault) {
@@ -33,10 +32,10 @@ class ViewHolder(private val binding: HomeHeaderCardBinding, val onClick: ItemAc
                 cardHeaderAdd.isVisible = true
             }
             else if (card.drawableId != -1) cardHeader.setImageResource(card.drawableId)
-            else cardHeader.load(card.banner.image)
+            else cardHeader.loadFitCenter(card.banner.image)
 
             cardBanner.setOnClickListener {
-                onClick.actionCallback(card.banner)
+                onClick.actionCallback.invoke()
             }
         }
     }

@@ -4,6 +4,6 @@ import com.horizon.horizify.commonModel.BannerModel
 
 data class HeaderCardModel(
     val isDefault: Boolean = false,
-    val drawableId: Int = -1,
+    val drawableId: Int = -1, // to removed
     val banner: BannerModel = BannerModel()
 )

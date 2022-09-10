@@ -11,6 +11,4 @@ interface FirebaseRepository {
 
     fun getImageFromStorage()
     fun getDataFromDatabase()
-
-    fun getCurrentDateTime(): String
 }

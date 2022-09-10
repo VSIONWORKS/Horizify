@@ -7,7 +7,7 @@ import com.horizon.horizify.databinding.HomeHeaderItemBinding
 import com.horizon.horizify.ui.home.adapter.HomeViewPagerAdapter
 import com.horizon.horizify.ui.home.viewmodel.HomeViewModel
 import com.horizon.horizify.utils.DepthPageTransformer
-import com.horizon.horizify.utils.ItemActionWithValue
+import com.horizon.horizify.utils.ItemAction
 import com.horizon.horizify.utils.SingletonHandler
 import com.horizon.horizify.utils.SingletonHandler.runnable
 import com.xwray.groupie.viewbinding.BindableItem
@@ -24,7 +24,7 @@ class HomeHeaderItem(viewModel: HomeViewModel) : BindableItem<HomeHeaderItemBind
 
             var currentItem = headerViewPager.currentItem
 
-            headerViewPager.adapter = HomeViewPagerAdapter(cards = cards, onClick = ItemActionWithValue { Log.e("todo here", it.toString()) })
+            headerViewPager.adapter = HomeViewPagerAdapter(cards = cards, onClick = ItemAction { Log.e("todo here", "home") })
             headerViewPager.setPageTransformer(DepthPageTransformer())
             headerDots.attachTo(headerViewPager)
 

@@ -109,3 +109,5 @@ fun String.toFormattedDate(inPattern: String = "yyyy-MMMM-d", outPattern: String
     val dateInstance = fmt.parse(this) ?: return this
     return fmtOut.format(dateInstance)
 }
+
+fun String.trimAllSpaces(): String = this.replace(" ", "")

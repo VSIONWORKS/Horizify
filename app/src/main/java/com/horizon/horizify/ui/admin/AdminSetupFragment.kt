@@ -23,8 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AdminSetupFragment : GroupieFragment() {
 
-    private var setupMode: String = ""
-
     private var setUpSection: Section = Section()
     private lateinit var adminSetupBannerCarouselItem: AdminSetupBannerCarouselItem
     private lateinit var adminSetupNetworkItem: AdminSetupNetworkItem
@@ -32,20 +30,16 @@ class AdminSetupFragment : GroupieFragment() {
     private val adminViewModel: AdminViewModel by viewModel()
 
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
-        setupMode = arguments?.getString(AdminModule.SETUP_MODE).orEmpty()
+        val bannerTypeModel = adminViewModel.setupBanner()
 
         val header = AdminHeaderItem(title = SETUP_BANNER, onBack = ItemAction { onBackPressed() })
 
-        when (setupMode) {
-            AdminModule.SETUP_PRIMMARY_BANNER -> {
-                adminSetupBannerCarouselItem = AdminSetupBannerCarouselItem(adminViewModel, true, onImagePick = ItemAction { openImagePicker() })
+        when (bannerTypeModel.type) {
+            AdminSetupEnum.PRIMARY_BANNER, AdminSetupEnum.BANNER -> {
+                adminSetupBannerCarouselItem = AdminSetupBannerCarouselItem(adminViewModel, onImagePick = ItemAction { openImagePicker() })
                 setUpSection.add(adminSetupBannerCarouselItem)
             }
-            AdminModule.SETUP_BANNER -> {
-                adminSetupBannerCarouselItem = AdminSetupBannerCarouselItem(adminViewModel, false, onImagePick = ItemAction { openImagePicker() })
-                setUpSection.add(adminSetupBannerCarouselItem)
-            }
-            AdminModule.SETUP_NETWORK -> {
+            AdminSetupEnum.NETWORK -> {
                 adminSetupNetworkItem = AdminSetupNetworkItem()
                 setUpSection.add(adminSetupNetworkItem)
             }
@@ -64,6 +58,7 @@ class AdminSetupFragment : GroupieFragment() {
 
     private fun startCollect() {
         with(adminViewModel) {
+            bannerTypeModel.collectOnStart(viewLifecycleOwner, adminSetupBannerCarouselItem::model)
             imageUriModel.collectOnStart(viewLifecycleOwner, adminSetupBannerCarouselItem::imageUriModel)
             pageState.collectOnStart(viewLifecycleOwner, ::handlePageState)
         }
@@ -99,7 +94,10 @@ class AdminSetupFragment : GroupieFragment() {
         binding.apply {
             when (state) {
                 PageState.Loading -> showLoader()
-                PageState.Completed -> hideLoader()
+                PageState.Completed -> {
+                    hideLoader()
+                    if (adminViewModel.saveState.value == state) onBackPressed()
+                }
                 PageState.Error -> hideLoader()
             }
         }
