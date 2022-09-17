@@ -9,7 +9,6 @@ object SingletonHandler {
     var runnable : Runnable? = null
     var timer : Timer? = null
 
-
     fun getCarouselHandler() : Handler {
         return carouselHandler
     }

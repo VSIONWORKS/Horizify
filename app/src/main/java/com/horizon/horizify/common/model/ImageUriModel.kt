@@ -1,4 +1,4 @@
-package com.horizon.horizify.commonModel
+package com.horizon.horizify.common.model
 
 import android.net.Uri
 

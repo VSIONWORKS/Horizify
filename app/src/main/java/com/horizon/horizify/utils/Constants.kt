@@ -1,8 +1,11 @@
 package com.horizon.horizify.utils
 
+import com.horizon.horizify.R
 import com.horizon.horizify.ui.bible.model.BibleVersionNameModel
+import com.horizon.horizify.ui.calendar.CalendarEventColorEnum
 
 object Constants {
+    const val TITLE = "Horizon"
     const val YOUTUBE_API_KEY = "AIzaSyAUEbzSy4U6tVIZkSQeyCypvzpRbekvb0c"
     const val YOUTUBE_HORIZON_CHANNEL_ID = "UC5FebdXWfuDB-tKtIoa61Tg"
     const val YOUTUBE_PART = "snippet"
@@ -67,6 +70,16 @@ object Constants {
             BibleVersion.NEW_INTERNATIONAL_VERSION -> BibleVersionNameModel(longDescription = "New International Version", shortDescription = "NIV", fileName = "bible_english_niv")
             BibleVersion.NEW_KING_JAMES_VERSION -> BibleVersionNameModel(longDescription = "New King James Version", shortDescription = "NKJV", fileName = "bible_english_nkjv")
             else -> BibleVersionNameModel(longDescription = "Revised Standard Version", shortDescription = "RSV", fileName = "bible_english_rsv.xml")
+        }
+    }
+
+    fun getEventColor(color: CalendarEventColorEnum): Int {
+        return when(color) {
+            CalendarEventColorEnum.BLUE -> R.color.calendar_event_blue
+            CalendarEventColorEnum.RED -> R.color.calendar_event_red
+            CalendarEventColorEnum.GREEN -> R.color.calendar_event_green
+            CalendarEventColorEnum.PURPLE -> R.color.calendar_event_purple
+            else -> R.color.calendar_event_blue
         }
     }
 }

@@ -3,8 +3,8 @@ package com.horizon.horizify.ui.admin.item.main
 import android.view.View
 import androidx.core.view.isVisible
 import com.horizon.horizify.R
-import com.horizon.horizify.commonModel.BannerTypeModel
-import com.horizon.horizify.commonModel.MainBannerModel
+import com.horizon.horizify.common.model.BannerTypeModel
+import com.horizon.horizify.common.model.MainBannerModel
 import com.horizon.horizify.databinding.AdminManageCarouselItemBinding
 import com.horizon.horizify.extensions.loadFitCenter
 import com.horizon.horizify.ui.admin.AdminSetupEnum

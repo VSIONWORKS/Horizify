@@ -12,9 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.horizon.horizify.R
+import com.horizon.horizify.common.ui.toolbar.SmileToolbarItem
 import com.horizon.horizify.databinding.FragmentBaseBinding
 import com.horizon.horizify.utils.Constants.SOURCE_FRAGMENT
+import com.jay.widget.StickyHeadersLinearLayoutManager
 import com.xwray.groupie.Section
+import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
 import java.util.*
 
@@ -25,6 +28,8 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
     protected val root by lazy { Section() }
 
     private val rootAdapter by lazy { RootAdapter() attach root }
+
+    protected open val smileToolbar by inject<SmileToolbarItem>()
 
     private val subClassName by lazy { this@GroupieFragment.javaClass.asSubclass(this@GroupieFragment.javaClass).simpleName.decapitalize(Locale.getDefault()) }
 
@@ -38,7 +43,7 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
         with(binding) {
             with(rvRoot) {
                 rvRoot.adapter = rootAdapter
-                layoutManager = LinearLayoutManager(context)
+                layoutManager = StickyHeadersLinearLayoutManager<RootAdapter>(context)
             }
         }
         onViewSetup(view, savedInstanceState)
@@ -97,16 +102,13 @@ abstract class GroupieFragment constructor(@LayoutRes val baseLayout: Int = R.la
     }
 
     protected fun disableMainScroll() {
-//        binding.rvRoot.setOnTouchListener { p0, p1 ->
-//            p0?.parent?.requestDisallowInterceptTouchEvent(false)
-//            false
-//        }
-        val lm = object :LinearLayoutManager(context) {
-            override fun canScrollVertically(): Boolean {
-                return false
+        binding.rvRoot.apply {
+            layoutManager = object : LinearLayoutManager(context) {
+                override fun canScrollVertically(): Boolean {
+                    return false
+                }
             }
         }
-        binding.rvRoot.layoutManager = lm
     }
 
     companion object {

@@ -1,10 +1,10 @@
 package com.horizon.horizify.ui.admin.viewmodel
 
 import android.net.Uri
-import com.horizon.horizify.commonModel.BannerModel
-import com.horizon.horizify.commonModel.BannerTypeModel
-import com.horizon.horizify.commonModel.ImageUriModel
-import com.horizon.horizify.commonModel.MainBannerModel
+import com.horizon.horizify.common.model.BannerModel
+import com.horizon.horizify.common.model.BannerTypeModel
+import com.horizon.horizify.common.model.ImageUriModel
+import com.horizon.horizify.common.model.MainBannerModel
 import com.horizon.horizify.ui.admin.AdminSetupEnum
 import com.horizon.horizify.utils.PageState
 import kotlinx.coroutines.flow.StateFlow

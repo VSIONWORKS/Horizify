@@ -9,7 +9,13 @@ import com.xwray.groupie.viewbinding.BindableItem
 class HomeBottomItem(val onClick: ItemAction) : BindableItem<HomeBottomItemBinding>() {
     override fun bind(viewBinding: HomeBottomItemBinding, position: Int) {
         with(viewBinding) {
-            cardGiving.setOnClickListener {
+            cardStory.setOnClickListener {
+                onClick.actionCallback.invoke()
+            }
+            cardVision.setOnClickListener {
+                onClick.actionCallback.invoke()
+            }
+            cardBelief.setOnClickListener {
                 onClick.actionCallback.invoke()
             }
         }

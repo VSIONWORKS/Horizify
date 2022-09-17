@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="24dp"
-    android:layout_marginVertical="32dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
     <TextView
-        android:id="@+id/txt_no_events"
-        android:layout_width="match_parent"
+        android:id="@+id/event_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="No Events"
-        android:textColor="@color/light_blue"
-        android:textSize="18dp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Horizon Event"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_events"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/event_time"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:visibility="gone"/>
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="10:00"/>
 
 </LinearLayout>

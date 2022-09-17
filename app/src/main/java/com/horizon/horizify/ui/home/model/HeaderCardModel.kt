@@ -1,6 +1,6 @@
 package com.horizon.horizify.ui.home.model
 
-import com.horizon.horizify.commonModel.BannerModel
+import com.horizon.horizify.common.model.BannerModel
 
 data class HeaderCardModel(
     val isDefault: Boolean = false,

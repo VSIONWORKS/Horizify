@@ -8,19 +8,16 @@ import com.horizon.horizify.extensions.collectOnStart
 import com.horizon.horizify.extensions.setBody
 import com.horizon.horizify.ui.home.item.*
 import com.horizon.horizify.ui.home.viewmodel.HomeViewModel
+import com.horizon.horizify.utils.*
 import com.horizon.horizify.utils.Constants.CHECK_IN_URL
 import com.horizon.horizify.utils.Constants.GIVING_URL
-import com.horizon.horizify.utils.ItemAction
-import com.horizon.horizify.utils.ItemActionWithPosition
-import com.horizon.horizify.utils.PageId
-import com.horizon.horizify.utils.SingletonHandler
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
 
 class HomeFragment : GroupieFragment() {
 
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val homeViewModel: HomeViewModel by sharedViewModel()
     private val homeHeaderItem by inject<HomeHeaderItem> { parametersOf(homeViewModel) }
 
     override fun onViewSetup(view: View, savedInstanceState: Bundle?) {
@@ -42,15 +39,14 @@ class HomeFragment : GroupieFragment() {
                             navigateToPage(PageId.WEBVIEW)
                         }
                         CardEnum.LOCATION.ordinal -> navigateToPage(PageId.LOCATION)
-                        CardEnum.CONNECT.ordinal -> navigateToPage(PageId.LOCATION)
+                        CardEnum.CONNECT.ordinal -> navigateToPage(PageId.COMING_SOON)
                     }
                 }
             )
 
             val bottomItem = HomeBottomItem(
                 onClick = ItemAction {
-                    homeViewModel.saveWebUrl(GIVING_URL)
-                    navigateToPage(PageId.WEBVIEW)
+                    navigateToPage(PageId.COMING_SOON)
                 }
             )
 
@@ -62,6 +58,10 @@ class HomeFragment : GroupieFragment() {
                 }
             )
 
+            homeHeaderItem.onClick = ItemActionWithValue {
+                homeViewModel.setSelectedBanner(it)
+                navigateToPage(PageId.BANNER_PAGE)
+            }
             setHeader(homeHeaderItem)
             setBody(bodyRecyclerItem, bottomItem)
             setFooter(footerItem)
@@ -73,6 +73,8 @@ class HomeFragment : GroupieFragment() {
     private fun startCollect() {
         with(homeViewModel){
             bannerCarousel.collectOnStart(viewLifecycleOwner, homeHeaderItem::model)
+            pageState.collectOnStart(viewLifecycleOwner, ::handlePageState)
+//            launchOnStart { getPrimaryBanner() }
         }
     }
 
@@ -84,5 +86,15 @@ class HomeFragment : GroupieFragment() {
     override fun onDestroy() {
         super.onDestroy()
         Log.e("destroy", "here")
+    }
+
+    private fun handlePageState(state: PageState) {
+        binding.apply {
+            when (state) {
+                PageState.Loading -> showLoader()
+                PageState.Completed -> hideLoader()
+                PageState.Error -> hideLoader()
+            }
+        }
     }
 }

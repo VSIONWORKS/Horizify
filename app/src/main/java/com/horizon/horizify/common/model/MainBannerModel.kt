@@ -1,4 +1,4 @@
-package com.horizon.horizify.commonModel
+package com.horizon.horizify.common.model
 
 data class MainBannerModel(
     val isDefault: Boolean = false,

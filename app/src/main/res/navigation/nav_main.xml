@@ -5,6 +5,24 @@
     android:id="@+id/nav_main">
 
     <fragment
+        android:id="@+id/comingSoonFragment"
+        android:name="com.horizon.horizify.common.ui.comingsoon.ComingSoonFragment">
+        <action
+            android:id="@+id/action_comingSoonFragment_pop"
+            app:popUpTo="@id/comingSoonFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_comingSoonFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
+        app:destination="@id/comingSoonFragment"
+        app:launchSingleTop="true" />
+
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.horizon.horizify.ui.home.HomeFragment">
         <action
@@ -20,6 +38,24 @@
         app:popEnterAnim="@anim/fragment_fade_exit"
         app:popExitAnim="@anim/fragment_fade_enter"
         app:destination="@id/homeFragment"
+        app:launchSingleTop="true" />
+
+    <fragment
+        android:id="@+id/bannerFragment"
+        android:name="com.horizon.horizify.ui.banner.BannerFragment">
+        <action
+            android:id="@+id/action_bannerFragment_pop"
+            app:popUpTo="@id/bannerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_bannerFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
+        app:destination="@id/bannerFragment"
         app:launchSingleTop="true" />
 
     <fragment

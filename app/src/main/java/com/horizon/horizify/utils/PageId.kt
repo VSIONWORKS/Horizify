@@ -1,6 +1,8 @@
 package com.horizon.horizify.utils
 
 object PageId {
+    const val COMING_SOON = "action_global_comingSoonFragment"
+    const val BANNER_PAGE = "action_global_bannerFragment"
     const val LOCATION = "locationActivity"
     const val WEBVIEW = "webViewActivity"
 

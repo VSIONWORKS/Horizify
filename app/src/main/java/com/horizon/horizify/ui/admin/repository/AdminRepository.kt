@@ -1,6 +1,6 @@
 package com.horizon.horizify.ui.admin.repository
 
-import com.horizon.horizify.commonModel.BannerTypeModel
+import com.horizon.horizify.common.model.BannerTypeModel
 import com.horizon.horizify.repository.FirebaseRepository
 
 interface AdminRepository: FirebaseRepository {

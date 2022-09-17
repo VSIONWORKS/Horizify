@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_giving"
+        android:id="@+id/card_story"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginHorizontal="6dp"

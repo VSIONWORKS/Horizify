@@ -1,6 +1,8 @@
 package com.horizon.horizify.extensions
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -111,3 +113,11 @@ fun String.toFormattedDate(inPattern: String = "yyyy-MMMM-d", outPattern: String
 }
 
 fun String.trimAllSpaces(): String = this.replace(" ", "")
+
+fun String.browseExternal(context: Context) {
+    val browserIntent = Intent(
+        Intent.ACTION_VIEW,
+        Uri.parse(this)
+    )
+    context.startActivity(browserIntent)
+}

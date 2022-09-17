@@ -1,5 +1,6 @@
-package com.horizon.horizify.commonModel
+package com.horizon.horizify.common.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -9,5 +10,7 @@ data class BannerModel(
     val description: String = "",
     val linkCaption: String = "",
     val link: String = "",
-    val date: String = ""
+    @SerialName("externalBrowser")
+    var isExternalBrowser: Boolean = false,
+    val date: String = "",
 )

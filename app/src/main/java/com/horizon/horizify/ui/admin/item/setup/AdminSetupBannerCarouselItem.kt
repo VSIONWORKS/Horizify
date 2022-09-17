@@ -6,8 +6,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.horizon.horizify.R
-import com.horizon.horizify.commonModel.BannerTypeModel
-import com.horizon.horizify.commonModel.ImageUriModel
+import com.horizon.horizify.common.model.BannerTypeModel
+import com.horizon.horizify.common.model.ImageUriModel
 import com.horizon.horizify.databinding.AdminSetupBannerCarouselItemBinding
 import com.horizon.horizify.extensions.loadFitCenter
 import com.horizon.horizify.extensions.trimAllSpaces
@@ -70,6 +70,7 @@ class AdminSetupBannerCarouselItem(val viewModel: AdminViewModel, val onImagePic
         textDescription.setText(model.banner.description)
         textLinkCaption.setText(model.banner.linkCaption)
         textLink.setText(model.banner.link)
+        checkboxXb.isChecked = model.banner.isExternalBrowser
     }
 
     private fun AdminSetupBannerCarouselItemBinding.validate() {
@@ -91,7 +92,8 @@ class AdminSetupBannerCarouselItem(val viewModel: AdminViewModel, val onImagePic
                 title = title,
                 description = description,
                 linkCaption = linkCaption,
-                link = link
+                link = link,
+                isExternalBrowser = checkboxXb.isChecked
             )
 
             with(viewModel) {

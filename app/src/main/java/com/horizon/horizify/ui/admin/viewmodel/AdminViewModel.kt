@@ -7,10 +7,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.horizon.horizify.base.BaseViewModel
-import com.horizon.horizify.commonModel.BannerModel
-import com.horizon.horizify.commonModel.BannerTypeModel
-import com.horizon.horizify.commonModel.ImageUriModel
-import com.horizon.horizify.commonModel.MainBannerModel
+import com.horizon.horizify.common.model.BannerModel
+import com.horizon.horizify.common.model.BannerTypeModel
+import com.horizon.horizify.common.model.ImageUriModel
+import com.horizon.horizify.common.model.MainBannerModel
 import com.horizon.horizify.extensions.toFormattedDate
 import com.horizon.horizify.extensions.trimAllSpaces
 import com.horizon.horizify.ui.admin.AdminModule.SETUP_BANNER_MODEL
