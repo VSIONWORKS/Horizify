@@ -7,15 +7,14 @@ import com.horizon.horizify.extensions.collectOnStart
 import com.horizon.horizify.extensions.handleBackPress
 import com.horizon.horizify.extensions.setBody
 import com.horizon.horizify.ui.admin.item.AdminHeaderItem
+import com.horizon.horizify.ui.admin.item.main.AdminGenericButtonItem
 import com.horizon.horizify.ui.admin.item.main.AdminManageCarouselItem
-import com.horizon.horizify.ui.admin.item.main.AdminManageNetworkItem
 import com.horizon.horizify.ui.admin.viewmodel.AdminViewModel
 import com.horizon.horizify.utils.Constants.ADMIN
 import com.horizon.horizify.utils.ItemAction
 import com.horizon.horizify.utils.ItemActionWithValue
 import com.horizon.horizify.utils.PageId
 import com.horizon.horizify.utils.PageState
-import com.xwray.groupie.ExpandableGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AdminFragment : GroupieFragment() {
@@ -35,11 +34,17 @@ class AdminFragment : GroupieFragment() {
                 navigateToPage(PageId.ADMIN_SETUP_PAGE)
             }
         )
-        val manageNetworkItem = ExpandableGroup(AdminManageNetworkItem(adminViewModel), false)
+//        val manageNetworkItem = ExpandableGroup(AdminManageNetworkItem(adminViewModel), false)
+
+        val calendarItem = AdminGenericButtonItem(
+            type = AdminManageEnum.CALENDAR,
+            title = "Calendar",
+            onClick = ItemActionWithValue { navigateToPage(PageId.ADMIN_CALENDAR) }
+        )
 
         with(root) {
             setHeader(header)
-            setBody(manageCarouseItem, manageNetworkItem)
+            setBody(manageCarouseItem, calendarItem)
         }
 
         with(adminViewModel) {

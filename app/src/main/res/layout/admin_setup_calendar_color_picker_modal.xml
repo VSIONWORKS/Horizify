@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/transparent">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/header_oval_top" >
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="32dp"
+                android:text="Select Event Color"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="@color/semi_white"
+                android:layout_gravity="start|center"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/light_white">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <RadioButton
+                    android:id="@+id/rd_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Blue"
+                    android:background="@color/calendar_event_blue"/>
+
+                <RadioButton
+                    android:id="@+id/rd_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Red"
+                    android:background="@color/calendar_event_red"/>
+
+                <RadioButton
+                    android:id="@+id/rd_green"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Green"
+                    android:background="@color/calendar_event_green"/>
+
+                <RadioButton
+                    android:id="@+id/rd_purple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Purple"
+                    android:background="@color/calendar_event_purple"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -26,6 +26,7 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_label_linear.xml" value="0.226" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/gradient_linear_card.xml" value="0.1775" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/header_oval_bottom.xml" value="0.18" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/header_oval_bottom_corners.xml" value="0.1955" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/header_oval_top.xml" value="0.2555" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2335" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2555" />
@@ -60,8 +61,11 @@
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_header_item.xml" value="0.26197916666666665" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_manage_banner_carousel_item.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_manage_carousel_item.xml" value="0.26197916666666665" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_manage_generic_button_item.xml" value="0.19947916666666668" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_manage_network_item.xml" value="0.26197916666666665" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_setup_banner_carousel_item.xml" value="0.25" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_setup_calendar_color_picker_modal.xml" value="0.5" />
+        <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_setup_calendar_item.xml" value="0.2" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/admin_setup_network_item.xml" value="0.365625" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/banner_fragment.xml" value="0.33" />
         <entry key="..\:/Project/My Projects/Horizify/app/src/main/res/layout/bible_book_item.xml" value="0.22604166666666667" />

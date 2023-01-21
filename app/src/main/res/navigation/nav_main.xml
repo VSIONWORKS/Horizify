@@ -185,6 +185,24 @@
         app:destination="@id/adminSetupFragment"
         app:launchSingleTop="true" />
 
+    <fragment
+        android:id="@+id/adminCalendarFragment"
+        android:name="com.horizon.horizify.ui.admin.AdminCalendarFragment">
+        <action
+            android:id="@+id/action_adminCalendarFragment_pop"
+            app:popUpTo="@id/adminCalendarFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_adminCalendarFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
+        app:destination="@id/adminCalendarFragment"
+        app:launchSingleTop="true" />
+
 
 
     <activity

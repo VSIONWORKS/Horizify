@@ -1,9 +1,11 @@
 package com.horizon.horizify.extensions
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -15,6 +17,8 @@ import com.bumptech.glide.request.RequestOptions
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
 
@@ -120,4 +124,46 @@ fun String.browseExternal(context: Context) {
         Uri.parse(this)
     )
     context.startActivity(browserIntent)
+}
+
+fun Dialog.setDefaultDialogDimension() {
+    with(this) {
+        val layoutParams: WindowManager.LayoutParams? = window?.attributes
+        if (layoutParams != null) {
+            layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT
+            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+        }
+        window?.attributes = layoutParams
+    }
+}
+
+fun String.toSafeFormattedDateString(outPattern: String = "yyyy-MM-dd"): String {
+    return this.safeZuluToLocalDateTime()?.format(DateTimeFormatter.ofPattern(outPattern, Locale.ENGLISH)) ?: this
+}
+
+fun String.toFormattedDateString(inPattern: String = "yyyy-MMMM-d", outPattern: String = "yyyy-MM-dd"): String {
+    val fmt: DateFormat = SimpleDateFormat(inPattern, Locale.ENGLISH)
+    val fmtOut: DateFormat = SimpleDateFormat(outPattern, Locale.ENGLISH)
+    val dateInstance = fmt.parse(this) ?: return this
+    return fmtOut.format(dateInstance)
+}
+
+fun String.safeZuluToLocalDateTime(): LocalDateTime? {
+    val pattern = listOf(
+        "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+        "yyyy-MM-dd'T'HH:mm:ss.SS'Z'",
+        "yyyy-MM-dd'T'HH:mm:ss.S'Z'",
+        "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    )
+    pattern.forEach {
+        try {
+
+            val formatter = DateTimeFormatter.ofPattern(it, Locale.ENGLISH)
+            return LocalDateTime.parse(this, formatter)
+
+        } catch (e: Exception) {
+
+        }
+    }
+    return null
 }
